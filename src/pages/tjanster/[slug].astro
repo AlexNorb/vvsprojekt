@@ -1,0 +1,385 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { siteConfig } from "../../config";
+import MobileActionBar from "../../components/MobileActionBar.astro";
+import CheckBadgeIcon from "../../components/icons/CheckBadgeIcon.astro";
+
+import ArrowRightIcon from "../../components/icons/ArrowRightIcon.astro";
+import ChevronDownIcon from "../../components/icons/ChevronDownIcon.astro";
+import ContactForm from "../../components/ContactForm.astro";
+import PhoneIcon from "../../components/icons/PhoneIcon.astro";
+import EnvelopeIcon from "../../components/icons/EnvelopeIcon.astro";
+import PricingCard from "../../components/PricingCard.astro";
+import { pb } from "../../utils";
+import { Image } from "astro:assets";
+
+// Import all pricing files from service folders
+const pricingFiles = import.meta.glob("../../content/services/*/pricing.json", {
+    eager: true,
+});
+
+export async function getStaticPaths() {
+    const services = await getCollection("services");
+    return services.map((service) => ({
+        params: { slug: service.slug },
+        props: { service },
+    }));
+}
+
+// Helper for image handling
+const isUrl = (img: any) => typeof img === "string";
+
+interface Props {
+    service: import("astro:content").CollectionEntry<"services">;
+}
+
+const { service } = Astro.props;
+const { data } = service;
+const { Content } = await service.render();
+
+// Load pricing from service folder if hasPricing is true
+let pricing = null;
+if (data.hasPricing) {
+    const pricingPath = `../../content/services/${service.slug}/pricing.json`;
+    const pricingModule = pricingFiles[pricingPath] as any;
+    if (pricingModule) {
+        pricing = pricingModule.default || pricingModule;
+    }
+}
+
+// Tax deduction configuration
+const taxDeductionConfig = {
+    rot30: {
+        title: "ROT-avdrag 30%",
+        text: "På denna tjänst kan du utnyttja ROT-avdrag på 30% av arbetskostnaden. Vi sköter all administration.",
+    },
+    gron50: {
+        title: "Grön Teknik 50%",
+        text: "På denna tjänst kan du utnyttja Grön Teknik-avdrag på 50% för både material- och arbetskostnaden. Vi sköter all administration.",
+    },
+    gron15: {
+        title: "Grön Teknik",
+        text: `På denna tjänst kan du utnyttja Grön Teknik-avdrag för både material- och arbetskostnaden:<br/><br/>• <strong>Batterilagring:</strong> 50%<br/>• <strong>Solceller:</strong> 15%<br/><br/>Vi sköter all administration.`,
+    },
+};
+const taxInfo =
+    data.taxDeduction && data.taxDeduction !== "none"
+        ? taxDeductionConfig[data.taxDeduction]
+        : null;
+---
+
+<MainLayout
+    title={data.title}
+    description={data.description}
+    image={typeof data.image === "string" ? data.image : data.image?.src}
+>
+    <Navbar />
+
+    <div class="pt-24 pb-24 min-h-screen bg-slate-50 animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Breadcrumb / Back */}
+
+            <div
+                class="bg-white rounded-lg shadow-xl overflow-hidden border border-slate-100"
+            >
+                {/* Header Image */}
+                <div class="relative h-64 md:h-96">
+                    <a
+                        href={pb("/")}
+                        onclick="event.preventDefault(); history.back();"
+                        class="absolute top-4 left-4 z-20 inline-flex items-center text-white/90 hover:text-white bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-sm px-4 py-2 rounded-full transition-all font-bold text-xs uppercase tracking-wider cursor-pointer border border-white/10"
+                    >
+                        <span class="mr-2">←</span> Tillbaka
+                    </a>
+
+                    <Image
+                        src={data.image as ImageMetadata | string}
+                        alt={data.title}
+                        class="w-full h-full object-cover"
+                        width={1200}
+                        height={600}
+                        inferSize={typeof data.image === "string"}
+                    />
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"
+                    >
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-8 md:p-12">
+                        <h1
+                            class="text-2xl sm:text-3xl md:text-5xl font-display font-bold text-white mb-2"
+                        >
+                            {data.title}
+                        </h1>
+                    </div>
+                </div>
+
+                {
+                    /* Mobile CTA Section - shown only on mobile/tablet, hidden on lg+ */
+                }
+                <div
+                    class="lg:hidden p-4 bg-slate-50 border-b border-slate-100"
+                >
+                    <div class="flex items-center gap-2">
+                        <a
+                            href="#contact-form"
+                            class="flex-1 flex items-center justify-center px-5 py-3 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-vvsblue hover:bg-vvsblue-600 transition-all"
+                        >
+                            Skicka förfrågan
+                            <div class="ml-2 w-4 h-4 inline-block">
+                                <ChevronDownIcon />
+                            </div>
+                        </a>
+                        <a
+                            href={siteConfig.phone.href}
+                            class="flex items-center justify-center p-3 bg-white rounded-md border border-slate-200 hover:border-vvsblue hover:bg-vvsblue hover:text-white transition-all text-vvsblue"
+                            aria-label="Ring oss"
+                        >
+                            <PhoneIcon className="h-5 w-5" />
+                        </a>
+                        <a
+                            href={siteConfig.email.href}
+                            class="flex items-center justify-center p-3 bg-white rounded-md border border-slate-200 hover:border-vvsblue hover:bg-vvsblue hover:text-white transition-all text-vvsblue"
+                            aria-label="Maila oss"
+                        >
+                            <EnvelopeIcon className="h-5 w-5" />
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:divide-x divide-slate-100"
+                >
+                    {/* Main Content */}
+                    <div class="col-span-2 p-6 md:p-12">
+                        {/* Features FIRST - inline tags that wrap naturally */}
+                        <div class="flex flex-wrap gap-2 md:gap-3 mb-8">
+                            {
+                                data.features ? (
+                                    data.features.map((feature) => (
+                                        <span class="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 bg-slate-100 rounded-full text-sm md:text-base font-medium text-slate-700">
+                                            {feature}
+                                        </span>
+                                    ))
+                                ) : (
+                                    <p class="text-slate-500">
+                                        Kontakta oss för detaljerad
+                                        specifikation.
+                                    </p>
+                                )
+                            }
+                        </div>
+
+                        {/* Description - no heading */}
+                        <article
+                            class="prose prose-lg prose-slate max-w-none mb-8 prose-p:text-slate-600 prose-strong:text-slate-800"
+                        >
+                            <Content />
+                        </article>
+
+                        {/* Pricing Card (if available) */}
+                        {
+                            pricing && (
+                                <div class="mt-12 pt-12 border-t border-slate-100">
+                                    <h3 class="text-xl font-bold text-slate-900 mb-6 font-display">
+                                        Prisexempel
+                                    </h3>
+                                    <div class="max-w-md">
+                                        <PricingCard
+                                            title={pricing.title}
+                                            subtitle={pricing.subtitle}
+                                            price={pricing.price}
+                                            priceLabel={pricing.priceLabel}
+                                            priceSuffix={pricing.priceSuffix}
+                                            includes={pricing.includes}
+                                            note={pricing.note}
+                                            greenTechDiscount={
+                                                pricing.greenTechDiscount
+                                            }
+                                            greenTechText={
+                                                pricing.greenTechText
+                                            }
+                                            ctaText={pricing.ctaText}
+                                            ctaLink={pricing.ctaLink}
+                                            image={pricing.image}
+                                        />
+                                    </div>
+                                </div>
+                            )
+                        }
+
+                        {/* Process Steps (if available) */}
+                        {
+                            data.processSteps && (
+                                <div class="mt-12 pt-12 border-t border-slate-100">
+                                    <h3 class="text-xl font-bold text-slate-900 mb-6 font-display">
+                                        Så går det till
+                                    </h3>
+                                    <div class="space-y-6">
+                                        {data.processSteps.map((step) => (
+                                            <div class="flex">
+                                                <div class="flex-shrink-0 mr-4">
+                                                    <div class="w-10 h-10 rounded-full bg-vvsblue text-white flex items-center justify-center font-bold font-display shadow-sm">
+                                                        {step.step}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-lg font-bold text-slate-900">
+                                                        {step.title}
+                                                    </h4>
+                                                    <p class="text-slate-600 text-sm mt-1 leading-relaxed">
+                                                        {step.description}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )
+                        }
+
+                        {
+                            /* ROT/Green Tech info - shown on mobile after content */
+                        }
+                        {
+                            taxInfo && (
+                                <div class="lg:hidden mt-12 p-6 bg-vvsblue-50 rounded-lg border border-vvsblue-100">
+                                    <h4 class="font-bold text-vvsblue mb-2">
+                                        {taxInfo.title}
+                                    </h4>
+                                    <p
+                                        class="text-sm text-vvsblue-800"
+                                        set:html={taxInfo.text}
+                                    />
+                                </div>
+                            )
+                        }
+                    </div>
+
+                    {/* Sidebar / CTA - hidden on mobile, shown on lg+ */}
+                    <div
+                        class="hidden lg:block col-span-1 p-8 md:p-12 bg-slate-50/50"
+                    >
+                        <div class="sticky top-24">
+                            <h3
+                                class="text-xl font-bold text-slate-900 mb-2 font-display"
+                            >
+                                Intresserad?
+                            </h3>
+                            <p class="text-slate-500 mb-8">
+                                Vi hjälper dig från planering till färdig
+                                installation. Begär en kostnadsfri offert idag.
+                            </p>
+
+                            <div class="space-y-4">
+                                <a
+                                    href="#contact-form"
+                                    class="w-full flex items-center justify-center px-6 py-4 border border-transparent rounded-md shadow-sm text-base font-bold text-white bg-vvsblue hover:bg-vvsblue-600 transition-all transform hover:-translate-y-1 block text-center"
+                                >
+                                    Skicka förfrågan
+                                    <div class="ml-2 w-5 h-5 inline-block">
+                                        <ChevronDownIcon />
+                                    </div>
+                                </a>
+
+                                <!-- Contact cards: side-by-side on sm-lg, stacked on mobile and lg+ sidebar -->
+                                <div
+                                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4"
+                                >
+                                    <a
+                                        href={siteConfig.phone.href}
+                                        class="block p-4 bg-white rounded-lg shadow-sm border border-slate-200 hover:border-vvsblue hover:shadow-md transition-all group text-center"
+                                    >
+                                        <div
+                                            class="flex items-center justify-center mb-2"
+                                        >
+                                            <div
+                                                class="flex-shrink-0 bg-vvsblue-50 p-2 rounded-full group-hover:bg-vvsblue group-hover:text-white text-vvsblue transition-colors mr-2"
+                                            >
+                                                <PhoneIcon
+                                                    className="h-4 w-4"
+                                                />
+                                            </div>
+                                            <p
+                                                class="text-xs font-medium text-slate-500 uppercase tracking-wide"
+                                            >
+                                                Ring mig
+                                            </p>
+                                        </div>
+                                        <p
+                                            class="text-lg font-bold text-slate-900 font-display"
+                                        >
+                                            {siteConfig.phone.display}
+                                        </p>
+                                    </a>
+
+                                    <a
+                                        href={siteConfig.email.href}
+                                        class="block p-4 bg-white rounded-lg shadow-sm border border-slate-200 hover:border-vvsblue hover:shadow-md transition-all group text-center"
+                                    >
+                                        <div
+                                            class="flex items-center justify-center mb-2"
+                                        >
+                                            <div
+                                                class="flex-shrink-0 bg-vvsblue-50 p-2 rounded-full group-hover:bg-vvsblue group-hover:text-white text-vvsblue transition-colors mr-2"
+                                            >
+                                                <EnvelopeIcon
+                                                    className="h-4 w-4"
+                                                />
+                                            </div>
+                                            <p
+                                                class="text-xs font-medium text-slate-500 uppercase tracking-wide"
+                                            >
+                                                Maila mig
+                                            </p>
+                                        </div>
+                                        <p
+                                            class="text-lg font-bold text-slate-900 font-display"
+                                        >
+                                            {siteConfig.email.display}
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+
+                            {
+                                taxInfo && (
+                                    <div class="mt-12 p-6 bg-vvsblue-50 rounded-lg border border-vvsblue-100">
+                                        <h4 class="font-bold text-vvsblue mb-2">
+                                            {taxInfo.title}
+                                        </h4>
+                                        <p
+                                            class="text-sm text-vvsblue-800"
+                                            set:html={taxInfo.text}
+                                        />
+                                    </div>
+                                )
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="contact-form" class="py-16 bg-white border-t border-slate-100">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2
+                class="text-2xl font-bold text-slate-900 text-center mb-8 font-display"
+            >
+                Har du frågor om {data.title}?
+            </h2>
+            <div
+                class="bg-slate-50 rounded-xl p-6 md:p-10 border border-slate-100 shadow-sm"
+            >
+                <ContactForm />
+            </div>
+        </div>
+    </section>
+
+    <MobileActionBar />
+    <Footer />
+</MainLayout>

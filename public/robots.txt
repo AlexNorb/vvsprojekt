@@ -1,0 +1,8 @@
+# Robots.txt for VVS PROJEKT
+# https://vvsprojekt.se
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://vvsprojekt.se/sitemap-index.xml

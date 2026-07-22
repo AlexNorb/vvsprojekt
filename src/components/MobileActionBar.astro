@@ -1,0 +1,62 @@
+---
+import PhoneIcon from "./icons/PhoneIcon.astro";
+import ChatBubbleOvalLeftIcon from "./icons/ChatBubbleOvalLeftIcon.astro";
+import { pb } from "../utils";
+import { siteConfig } from "../config";
+---
+
+<div
+    id="mobile-action-bar"
+    class="fixed bottom-0 left-0 w-full z-50 md:hidden pb-safe-area transition-transform duration-300 translate-y-full"
+>
+    <div
+        class="bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] p-3 pb-5"
+    >
+        <div class="grid grid-cols-2 gap-3">
+            <a
+                href={pb("/#contact-form")}
+                class="flex flex-col items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-800 py-3 rounded-md transition-colors active:scale-95"
+            >
+                <ChatBubbleOvalLeftIcon className="w-6 h-6 mb-1 text-vvsblue" />
+                <span
+                    class="text-xs font-bold font-display uppercase tracking-wide"
+                    >Skicka Förfrågan</span
+                >
+            </a>
+
+            <a
+                href={siteConfig.phone.href}
+                class="flex flex-col items-center justify-center bg-vvsblue hover:bg-vvsblue-600 text-white py-3 rounded-md transition-colors shadow-lg shadow-vvsblue/30 active:scale-95"
+            >
+                <PhoneIcon className="w-6 h-6 mb-1" />
+                <span
+                    class="text-xs font-bold font-display uppercase tracking-wide"
+                    >Ring Direkt</span
+                >
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    let actionBar;
+
+    const handleScroll = () => {
+        if (!actionBar) return;
+        if (window.scrollY > 200) {
+            actionBar.classList.remove("translate-y-full");
+            actionBar.classList.add("translate-y-0");
+        } else {
+            actionBar.classList.add("translate-y-full");
+            actionBar.classList.remove("translate-y-0");
+        }
+    };
+
+    // Attach scroll listener once
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    document.addEventListener("astro:page-load", () => {
+        actionBar = document.getElementById("mobile-action-bar");
+        handleScroll();
+    });
+</script>

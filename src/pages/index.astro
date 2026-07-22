@@ -1,0 +1,29 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import About from "../components/About.astro";
+import ReviewsBanner from "../components/ReviewsBanner.astro";
+import FeaturedProjects from "../components/FeaturedProjects.astro";
+
+import FAQ from "../components/FAQ.astro";
+import Contact from "../components/Contact.astro";
+import MobileActionBar from "../components/MobileActionBar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<MainLayout title="Rörläggare & Värmepumpar">
+    <Navbar />
+    <main>
+        <Hero />
+        <ReviewsBanner />
+        <Services />
+        <FeaturedProjects />
+        <About />
+        <FAQ />
+        <Contact />
+        <MobileActionBar />
+    </main>
+    <Footer />
+</MainLayout>

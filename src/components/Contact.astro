@@ -1,0 +1,125 @@
+---
+import PhoneIcon from "./icons/PhoneIcon.astro";
+import EnvelopeIcon from "./icons/EnvelopeIcon.astro";
+import ContactForm from "./ContactForm.astro";
+import { siteConfig } from "../config";
+---
+
+<section id="contact" class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2
+                class="text-vvscopper font-bold tracking-wide uppercase text-sm mb-2 font-display"
+            >
+                Kontakta Oss
+            </h2>
+            <h3
+                class="text-3xl font-extrabold text-slate-900 sm:text-4xl font-display"
+            >
+                Hör av dig direkt
+            </h3>
+            <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
+                För snabbast kontakt så ring gärna. Har du en mindre akut
+                jobbförfrågan så är mail eller formuläret perfekt. Då kan du
+                även bifoga bilder och ritningar att utgå från.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+            {/* Contact Info - Top Left on Desktop */}
+            <div class="flex flex-col justify-center space-y-8 lg:col-start-1">
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4"
+                >
+                    <a
+                        href={siteConfig.phone.href}
+                        class="block p-6 bg-white rounded-lg shadow-sm border border-slate-100 hover:border-vvsblue hover:shadow-md transition-all group text-center"
+                    >
+                        <div class="flex items-center justify-center mb-2">
+                            <div
+                                class="flex-shrink-0 bg-vvsblue-50 p-2 rounded-full group-hover:bg-vvsblue group-hover:text-white text-vvsblue transition-colors mr-3"
+                            >
+                                <PhoneIcon className="h-5 w-5" />
+                            </div>
+                            <p
+                                class="text-sm font-medium text-slate-500 uppercase tracking-wide"
+                            >
+                                Ring mig
+                            </p>
+                        </div>
+                        <p
+                            class="text-xl font-bold text-slate-900 font-display"
+                        >
+                            {siteConfig.phone.display}
+                        </p>
+                    </a>
+
+                    <a
+                        href={siteConfig.email.href}
+                        class="block p-6 bg-white rounded-lg shadow-sm border border-slate-100 hover:border-vvsblue hover:shadow-md transition-all group text-center"
+                    >
+                        <div class="flex items-center justify-center mb-2">
+                            <div
+                                class="flex-shrink-0 bg-vvsblue-50 p-2 rounded-full group-hover:bg-vvsblue group-hover:text-white text-vvsblue transition-colors mr-3"
+                            >
+                                <EnvelopeIcon className="h-5 w-5" />
+                            </div>
+                            <p
+                                class="text-sm font-medium text-slate-500 uppercase tracking-wide"
+                            >
+                                Maila mig
+                            </p>
+                        </div>
+                        <p
+                            class="text-xl font-bold text-slate-900 font-display"
+                        >
+                            {siteConfig.email.display}
+                        </p>
+                    </a>
+                </div>
+
+                <div>
+                    <h4
+                        class="text-xl font-bold font-display text-slate-900 mb-4"
+                    >
+                        Ditt projekt i fokus
+                    </h4>
+                    <p class="text-slate-600 text-base">
+                        Jag erbjuder en personlig genomgång av ditt projekt. För
+                        större jobb kommer jag gärna ut och tittar på plats för
+                        att diskutera lösningar.
+                    </p>
+                </div>
+            </div>
+
+            {
+                /* Form - Right Column (spans 2 rows on desktop to balance height) */
+            }
+            <div
+                id="contact-form"
+                class="bg-white rounded-lg shadow-xl p-8 sm:p-12 border border-slate-100 lg:col-start-2 lg:row-span-2"
+            >
+                <ContactForm />
+            </div>
+
+            {
+                /* B2B - Bottom Left on Desktop (under info), Bottom on Mobile (under form) */
+            }
+            <div
+                class="mt-0 p-6 bg-vvsblue rounded-lg text-white lg:col-start-1 lg:mt-auto"
+            >
+                <h5 class="font-display font-bold text-lg mb-2">
+                    Samarbete & B2B
+                </h5>
+                <p class="text-vvsblue-100 text-sm mb-4">
+                    Söker ni en VVS-partner? Vi är vana att arbeta som underentreprenör inom rör- och värmeprojekt.
+                </p>
+                <div
+                    class="text-xs font-mono bg-vvsblue-600/50 p-2 rounded inline-block"
+                >
+                    F-Skatt • Ansvarsförsäkring • ID06
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

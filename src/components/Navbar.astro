@@ -1,0 +1,294 @@
+---
+import BoltIcon from "./icons/BoltIcon.astro";
+import LogoName from "./icons/LogoName.astro";
+import MenuIcon from "./icons/MenuIcon.astro";
+import XMarkIcon from "./icons/XMarkIcon.astro";
+import LogoTitle from "./icons/LogoTitle.astro";
+
+import ChevronDownIcon from "./icons/ChevronDownIcon.astro";
+import FacebookIcon from "./icons/FacebookIcon.astro";
+import InstagramIcon from "./icons/InstagramIcon.astro";
+import StarIcon from "./icons/StarIcon.astro";
+import { pb } from "../utils";
+import { getCollection } from "astro:content";
+import { siteConfig } from "../config";
+
+// Fetch services from content collection
+const servicesCollection = await getCollection("services");
+const services = servicesCollection
+    .sort((a, b) => (a.data.id ?? 99) - (b.data.id ?? 99))
+    .map((s) => ({
+        title: s.data.title,
+        slug: s.slug,
+    }));
+
+const navItems = [
+    {
+        label: "Tjänster",
+        href: pb("/#services"), // Keep #services anchor if it's a section on home, or change to /tjanster if it's a page
+        children: services.map((s) => ({
+            label: s.title,
+            href: pb(`/tjanster/${s.slug}`),
+        })),
+    },
+    { label: "Projekt", href: pb("/projekt") },
+    { label: "Om Oss", href: pb("/#about") },
+    { label: "Kontakt", href: pb("/#contact") },
+];
+---
+
+<nav
+    id="navbar"
+    class="fixed w-full z-50 transition-all duration-300 ease-in-out py-3 translate-y-0 bg-transparent border-b border-transparent"
+>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+            {/* Logo */}
+            <a
+                href={pb("/#home")}
+                class="flex-shrink-0 flex items-center gap-2 group"
+                aria-label={siteConfig.brandName}
+            >
+                <LogoTitle className="h-8 sm:h-10 w-auto drop-shadow-md" />
+            </a>
+
+            {/* Desktop Menu */}
+            <div class="hidden lg:flex space-x-6 items-center flex-nowrap">
+                {
+                    navItems.map((item) =>
+                        item.children ? (
+                            <div class="relative group">
+                                <a
+                                    href={item.href}
+                                    class="flex items-center gap-1 font-sans text-sm font-medium transition-colors duration-200 uppercase tracking-wide text-slate-600 hover:text-vvsblue py-2"
+                                >
+                                    {item.label}
+                                    <ChevronDownIcon className="w-4 h-4" />
+                                </a>
+                                <div class="absolute left-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+                                    <div class="bg-white backdrop-blur-md rounded-md shadow-xl border border-gray-100 py-2 overflow-hidden">
+                                        {item.children.map((child) => (
+                                            <a
+                                                href={child.href}
+                                                class="block px-4 py-3 text-slate-600 hover:text-vvsblue hover:bg-slate-50 transition-colors text-sm font-medium border-l-2 border-transparent hover:border-vvsblue"
+                                            >
+                                                {child.label}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <a
+                                href={item.href}
+                                class="font-sans text-sm font-medium transition-colors duration-200 uppercase tracking-wide text-slate-600 hover:text-vvsblue py-2"
+                            >
+                                {item.label}
+                            </a>
+                        ),
+                    )
+                }
+                <a
+                    href={pb("/#contact-form")}
+                    class="px-6 py-2.5 rounded-md font-display font-medium text-sm transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 bg-vvsblue text-white hover:bg-vvsblue/90"
+                >
+                    Skicka Förfrågan
+                </a>
+
+                <!-- Social Icons -->
+                <div class="flex items-center gap-1">
+                    <a
+                        href={siteConfig.social.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook"
+                        class="w-8 h-8 rounded-md flex items-center justify-center text-slate-500 hover:text-[#1877F2] transition-all duration-200"
+                    >
+                        <FacebookIcon className="w-5 h-5" />
+                    </a>
+                    <a
+                        href={siteConfig.social.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        class="w-8 h-8 rounded-md flex items-center justify-center text-slate-500 hover:text-[#E4405F] transition-all duration-200"
+                    >
+                        <InstagramIcon className="w-5 h-5" />
+                    </a>
+                    <a
+                        href={siteConfig.social.googleReview}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Google Reviews"
+                        class="w-8 h-8 rounded-md flex items-center justify-center text-slate-500 hover:text-[#FBBC05] transition-all duration-200"
+                    >
+                        <StarIcon className="w-5 h-5" />
+                    </a>
+                </div>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div class="flex items-center lg:hidden">
+                <button
+                    id="mobile-menu-btn"
+                    class="inline-flex items-center justify-center p-2 rounded-md focus:outline-none text-vvsblue"
+                >
+                    <span class="sr-only">Öppna meny</span>
+                    <div
+                        id="menu-icon-open"
+                        class="transition-all duration-300 ease-in-out"
+                    >
+                        <MenuIcon className="h-8 w-8" />
+                    </div>
+                    <div
+                        id="menu-icon-close"
+                        class="absolute opacity-0 scale-75 transition-all duration-300 ease-in-out"
+                    >
+                        <XMarkIcon className="h-8 w-8" />
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {/* Mobile Menu Panel */}
+    <div
+        id="mobile-menu"
+        class="lg:hidden absolute w-full bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-xl top-full -mt-px left-0 transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none"
+    >
+        <div class="px-4 pt-2 pb-3 space-y-1 sm:px-6">
+            {
+                navItems.map((item) => (
+                    <a
+                        href={item.href}
+                        class="mobile-nav-link block px-3 py-4 rounded-md text-lg font-semibold text-slate-900 hover:text-vvsblue hover:bg-vvsblue-50 font-display text-center"
+                    >
+                        {item.label}
+                    </a>
+                ))
+            }
+            <!-- CTA Button -->
+            <a
+                href={pb("/#contact")}
+                class="mobile-nav-link block w-full text-center mt-4 bg-vvsblue text-white px-3 py-4 rounded-md text-base font-bold font-display"
+            >
+                SKICKA FÖRFRÅGAN
+            </a>
+
+            <!-- Social Icons -->
+            <div
+                class="flex items-center justify-center gap-4 pt-4 mt-4 border-t border-gray-100"
+            >
+                <a
+                    href={siteConfig.social.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    class="w-10 h-10 rounded-md flex items-center justify-center text-[#1877F2] transition-all duration-200"
+                >
+                    <FacebookIcon className="w-6 h-6" />
+                </a>
+                <a
+                    href={siteConfig.social.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    class="w-10 h-10 rounded-md flex items-center justify-center text-[#E4405F] transition-all duration-200"
+                >
+                    <InstagramIcon className="w-6 h-6" />
+                </a>
+                <a
+                    href={siteConfig.social.googleReview}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Google Reviews"
+                    class="w-10 h-10 rounded-md flex items-center justify-center text-[#FBBC05] transition-all duration-200"
+                >
+                    <StarIcon className="w-6 h-6" />
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    let mobileMenuBtn;
+    let mobileMenu;
+    let menuIconOpen;
+    let menuIconClose;
+    let navbar;
+    let mobileNavLinks;
+    let isMenuOpen = false;
+    let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+    const transparencyThreshold = 100;
+    const hideShowThreshold = 10;
+
+    function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+            mobileMenu?.classList.remove("opacity-0", "-translate-y-2", "pointer-events-none");
+            mobileMenu?.classList.add("opacity-100", "translate-y-0", "pointer-events-auto");
+            menuIconOpen?.classList.add("opacity-0", "scale-75", "rotate-90");
+            menuIconClose?.classList.remove("opacity-0", "scale-75");
+            menuIconClose?.classList.add("opacity-100", "scale-100");
+            navbar?.classList.add("bg-white/95", "backdrop-blur-md", "shadow-sm", "border-transparent");
+            navbar?.classList.remove("bg-transparent", "border-gray-100");
+        } else {
+            mobileMenu?.classList.add("opacity-0", "-translate-y-2", "pointer-events-none");
+            mobileMenu?.classList.remove("opacity-100", "translate-y-0", "pointer-events-auto");
+            menuIconOpen?.classList.remove("opacity-0", "scale-75", "rotate-90");
+            menuIconClose?.classList.add("opacity-0", "scale-75");
+            menuIconClose?.classList.remove("opacity-100", "scale-100");
+            handleScroll();
+        }
+    }
+
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY < transparencyThreshold && !isMenuOpen) {
+            navbar?.classList.remove("bg-white/95", "backdrop-blur-md", "shadow-sm", "border-gray-100");
+            navbar?.classList.add("bg-transparent", "border-transparent");
+        } else {
+            navbar?.classList.add("bg-white/95", "backdrop-blur-md", "shadow-sm", "border-gray-100");
+            navbar?.classList.remove("bg-transparent", "border-transparent");
+        }
+
+        if (currentScrollY < hideShowThreshold || isMenuOpen) {
+            navbar?.classList.remove("-translate-y-full");
+            navbar?.classList.add("translate-y-0");
+        } else if (currentScrollY > lastScrollY) {
+            navbar?.classList.remove("translate-y-0");
+            navbar?.classList.add("-translate-y-full");
+        } else {
+            navbar?.classList.remove("-translate-y-full");
+            navbar?.classList.add("translate-y-0");
+        }
+
+        lastScrollY = currentScrollY;
+    }
+
+    // Attach scroll listener once
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    document.addEventListener("astro:page-load", () => {
+        mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        mobileMenu = document.getElementById("mobile-menu");
+        menuIconOpen = document.getElementById("menu-icon-open");
+        menuIconClose = document.getElementById("menu-icon-close");
+        navbar = document.getElementById("navbar");
+        mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+        isMenuOpen = false;
+        lastScrollY = window.scrollY;
+
+        mobileMenuBtn?.addEventListener("click", toggleMenu);
+        mobileNavLinks?.forEach((link) => {
+            link.addEventListener("click", () => {
+                if (isMenuOpen) toggleMenu();
+            });
+        });
+
+        handleScroll();
+    });
+</script>

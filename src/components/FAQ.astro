@@ -1,0 +1,113 @@
+---
+import ChevronDownIcon from "./icons/ChevronDownIcon.astro";
+
+const faqs = [
+    {
+        question: "Vad är ROT-avdraget för VVS-arbeten?",
+        answer: "ROT-avdrag ger privatpersoner 30% skattereduktion på arbetskostnaden vid VVS-installationer i hemmet, exempelvis badrumsrenovering, byte av värmepump eller omdragning av rör. Vi sköter all administration direkt på fakturan så du slipper krångel.",
+    },
+    {
+        question: "Hur snabbt kan ni komma vid akut vattenläcka?",
+        answer: "Vi strävar efter att vara på plats så snabbt som möjligt vid akuta ärenden. Ring oss direkt så gör vi vårt bästa för att lösa situationen samma dag.",
+    },
+    {
+        question: "Vad kostar en värmepumpsinstallation?",
+        answer: "Priset varierar beroende på typ av värmepump och förutsättningarna i din bostad. En luft/vatten-värmepump ligger vanligtvis på 80 000–150 000 kr inklusive installation. Kontakta oss för en kostnadsfri offert anpassad efter ditt hem.",
+    },
+    {
+        question: "Utför ni jobb åt både privatpersoner och företag?",
+        answer: "Ja, absolut! Vi arbetar med allt från privata badrumsrenoveringar och värmepumpsinstallationer till större rörentreprenader för bostadsrättsföreningar och företag.",
+    },
+];
+---
+
+<section id="faq" class="py-16 bg-white relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2
+                class="text-vvscopper font-bold tracking-wide uppercase text-sm mb-2 font-display"
+            >
+                Vanliga Frågor
+            </h2>
+            <h3
+                class="text-3xl font-extrabold text-slate-900 sm:text-4xl font-display"
+            >
+                Du undrar, vi svarar.
+            </h3>
+        </div>
+
+        <div class="space-y-4">
+            {
+                faqs.map((faq, index) => (
+                    <div class="faq-item border border-slate-100 rounded-lg overflow-hidden transition-all duration-300 bg-white hover:border-vvsblue/30">
+                        <button class="faq-toggle w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                            <span class="faq-question font-display font-bold text-lg transition-colors text-slate-800">
+                                {faq.question}
+                            </span>
+                            <span class="faq-icon ml-6 flex-shrink-0 transition-transform duration-300 text-slate-400">
+                                <ChevronDownIcon className="w-6 h-6" />
+                            </span>
+                        </button>
+
+                        <div class="faq-answer px-6 text-slate-600 overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
+                            <p class="leading-relaxed border-t border-slate-200/50 pt-4 pb-6">
+                                {faq.answer}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const toggles = document.querySelectorAll(".faq-toggle");
+
+        toggles.forEach((toggle) => {
+            toggle.addEventListener("click", () => {
+                const parent = toggle.parentElement;
+                const answer = parent?.querySelector(".faq-answer") as HTMLElement;
+                const icon = toggle.querySelector(".faq-icon");
+                const question = toggle.querySelector(".faq-question");
+
+                if (!answer || !parent || !icon || !question) return;
+
+                const isClosed = answer.classList.contains("max-h-0");
+
+                // Close all others
+                document.querySelectorAll(".faq-item").forEach((item) => {
+                    const ans = item.querySelector(".faq-answer") as HTMLElement;
+                    const icn = item.querySelector(".faq-icon");
+                    const qst = item.querySelector(".faq-question");
+
+                    if (ans) {
+                        ans.style.maxHeight = "0px";
+                        ans.classList.add("max-h-0", "opacity-0");
+                    }
+                    icn?.classList.remove("rotate-180", "text-vvsblue");
+                    qst?.classList.remove("text-vvsblue");
+                    item.classList.remove(
+                        "shadow-lg",
+                        "bg-slate-50",
+                        "border-vvsblue/20",
+                    );
+                });
+
+                if (isClosed) {
+                    answer.classList.remove("max-h-0", "opacity-0");
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+
+                    icon.classList.add("rotate-180", "text-vvsblue");
+                    question.classList.add("text-vvsblue");
+                    parent.classList.add(
+                        "shadow-lg",
+                        "bg-slate-50",
+                        "border-vvsblue/20",
+                    );
+                }
+            });
+        });
+    });
+</script>

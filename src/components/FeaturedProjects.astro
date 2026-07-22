@@ -1,0 +1,78 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import { getCollection } from "astro:content";
+import { pb } from "../utils";
+
+const allProjects = await getCollection("projects");
+
+// Filter for featured projects, or fallback to first 3
+let featuredProjects = allProjects.filter((p) => p.data.featured);
+if (featuredProjects.length === 0) {
+    featuredProjects = allProjects.slice(0, 4);
+} else {
+    featuredProjects = featuredProjects.slice(0, 4);
+}
+
+// Dynamic grid class based on number of projects
+const gridClass =
+    {
+        1: "grid-cols-1 max-w-2xl mx-auto",
+        2: "grid-cols-1 md:grid-cols-2",
+        3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+        4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+    }[featuredProjects.length] || "grid-cols-1 md:grid-cols-2 lg:grid-cols-4";
+
+// Helper to format category for display (taking first filter category or serviceType)
+const getDisplayCategory = (project: any) => {
+    if (project.data.filterCategory && project.data.filterCategory.length > 0) {
+        return project.data.filterCategory[0].toUpperCase();
+    }
+    return project.data.serviceType || "PROJEKT";
+};
+---
+
+<section id="featured-projects" class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2
+                class="text-elorange font-bold tracking-wide uppercase text-sm mb-2 font-display"
+            >
+                Utvalda Projekt
+            </h2>
+            <h3
+                class="text-3xl font-extrabold text-slate-900 sm:text-4xl font-display"
+            >
+                Några av våra arbeten
+            </h3>
+            <p class="mt-4 text-xl text-slate-500 font-sans">
+                Bli inspirerad och se vad vi kan göra för dig! <br /> Se fler på vår
+                projektsida.
+            </p>
+        </div>
+
+        <div class={`grid ${gridClass} gap-8`}>
+            {
+                featuredProjects.map((project) => (
+                    <ProjectCard
+                        title={project.data.title}
+                        category={getDisplayCategory(project)}
+                        serviceType={project.data.serviceType}
+                        filterCategory={project.data.filterCategory || []}
+                        description={project.data.description || ""}
+                        image={project.data.coverImage}
+                        slug={project.slug}
+                    />
+                ))
+            }
+        </div>
+
+        <div class="mt-12 text-center">
+            <a
+                href={pb("/projekt")}
+                class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-white bg-elblue hover:bg-elblue-600 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 shadow-md font-display uppercase tracking-wide"
+            >
+                Se alla projekt
+            </a>
+        </div>
+    </div>
+</section>

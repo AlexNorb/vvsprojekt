@@ -1,0 +1,259 @@
+---
+import StarIcon from "./icons/StarIcon.astro";
+import GoogleIcon from "./icons/GoogleIcon.astro";
+import { siteConfig } from "../config";
+
+
+const reviews = [
+    {
+        name: "Anna",
+        text: "Fantastiskt jobb med vår nya värmepump! Allt fungerar perfekt och vi märker redan stor skillnad på uppvärmningen. Snabb och proffsig installation.",
+        stars: 5,
+        tags: ["Värmepump", "Villa"],
+    },
+    {
+        name: "Erik",
+        text: "Vi anlitade VVS Projekt för badrumsrenoveringen och är supernöjda. Allt från rörarbeten till klinkersättning blev perfekt. Rekommenderas varmt!",
+        stars: 5,
+        tags: ["Badrum", "Renovering"],
+    },
+    {
+        name: "Maria",
+        text: "Snabb hjälp med en akut vattenläcka en söndagskväll. Proffsig och trevlig personal som löste problemet direkt.",
+        stars: 5,
+        tags: ["Akut", "Vattenläcka"],
+    },
+    {
+        name: "Lars",
+        text: "Fick hjälp med att dra om alla vattenledningar i samband med köksrenoveringen. Rent och prydligt jobb. Alltid lätt att nå för frågor.",
+        stars: 5,
+        tags: ["Kök", "Rördragning"],
+    },
+    {
+        name: "Sofia",
+        text: "Installerade golvvärme i hela nedervåningen. Underbar komfort och energieffektivt. Tack för ett fantastiskt resultat!",
+        stars: 5,
+        tags: ["Golvvärme", "Nybygge"],
+    },
+];
+---
+
+<section
+    class="bg-white border-b border-slate-100 py-6 overflow-hidden relative"
+>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative group px-1 md:px-8">
+            {/* Previous Button */}
+            <button
+                id="carousel-prev"
+                class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md items-center justify-center text-slate-600 hover:text-vvsblue hover:border-vvsblue/30 focus:outline-none transition-all duration-300 md:opacity-0 group-hover:opacity-100 focus:opacity-100 cursor-pointer disabled:pointer-events-none"
+                aria-label="Föregående omdöme"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            {/* Container for Carousel */}
+            <div
+                id="banner-carousel"
+                class="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-6 scroll-smooth -mx-4 px-4 md:mx-0 md:px-0"
+            >
+                {
+                    reviews.map((review, index) => (
+                        <div
+                            class="banner-card w-[85%] sm:w-[350px] md:w-[calc((100%-3rem)/3)] flex-shrink-0 snap-start flex flex-col"
+                            data-index={index}
+                        >
+                            <div class="flex flex-col p-4 rounded-lg bg-slate-50 border border-slate-100 hover:border-vvsblue/20 hover:shadow-sm transition-all duration-300 h-full">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="text-sm font-bold text-slate-900 truncate pr-2">
+                                        {review.name}
+                                    </h4>
+                                    <div class="flex text-vvscopper">
+                                        {Array.from({
+                                            length: review.stars,
+                                        }).map(() => (
+                                            <StarIcon className="w-3.5 h-3.5" />
+                                        ))}
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-600 italic leading-relaxed flex-grow">
+                                    "{review.text}"
+                                </p>
+                                
+                                {/* Tags Section */}
+                                <div class="flex flex-wrap gap-1 mt-3 pt-2 border-t border-slate-200/50">
+                                    {
+                                        review.tags.map((tag) => (
+                                            <span class="text-[9px] font-bold uppercase tracking-wider text-vvsblue bg-vvsblue-50/70 px-1.5 py-0.5 rounded-sm">
+                                                {tag}
+                                            </span>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            {/* Next Button */}
+            <button
+                id="carousel-next"
+                class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md items-center justify-center text-slate-600 hover:text-vvsblue hover:border-vvsblue/30 focus:outline-none transition-all duration-300 md:opacity-0 group-hover:opacity-100 focus:opacity-100 cursor-pointer disabled:pointer-events-none"
+                aria-label="Nästa omdöme"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+
+        {/* Dots Indicator (All Screens) */}
+        <div class="flex justify-center gap-2 mt-4 h-2">
+            {
+                reviews.map((_, index) => (
+                    <button
+                        class="banner-dot w-1.5 h-1.5 rounded-full bg-slate-300 transition-all duration-300 hover:bg-vvscopper/50 focus:outline-none"
+                        aria-label={`Gå till omdöme ${index + 1}`}
+                        data-index={index}
+                    />
+                ))
+            }
+        </div>
+
+        {/* Leave Review CTA */}
+        <div class="flex justify-center mt-4">
+            <a
+                href={siteConfig.social.googleReview}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 hover:text-white bg-slate-100 hover:bg-gradient-to-r hover:from-[#4285F4] hover:via-[#34A853] hover:to-[#FBBC04] rounded-full transition-all duration-300 group"
+            >
+                <GoogleIcon className="w-4 h-4 text-[#4285F4] group-hover:text-white transition-colors" />
+                <span>Nöjd kund? Lämna ett omdöme!</span>
+                <span class="group-hover:translate-x-1 transition-transform"
+                    >→</span
+                >
+            </a>
+        </div>
+    </div>
+
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .banner-dot.active {
+            background-color: var(--color-vvscopper);
+            transform: scale(1.2);
+        }
+    </style>
+
+    <script>
+        let carousel;
+        let cards;
+        let dots;
+        let prevBtn;
+        let nextBtn;
+
+        document.addEventListener("astro:page-load", () => {
+            carousel = document.getElementById("banner-carousel");
+            cards = document.querySelectorAll(".banner-card");
+            dots = document.querySelectorAll(".banner-dot");
+            prevBtn = document.getElementById("carousel-prev");
+            nextBtn = document.getElementById("carousel-next");
+
+            if (!carousel) return;
+
+            // Prev/Next & Dots Navigation
+            if (prevBtn && nextBtn) {
+                const updateButtonsAndDots = () => {
+                    const scrollLeft = carousel.scrollLeft;
+                    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                    
+                    // Button visibility via inline style to override Tailwind hover specificity
+                    if (scrollLeft <= 5) {
+                        prevBtn.style.opacity = "0";
+                        prevBtn.style.pointerEvents = "none";
+                    } else {
+                        prevBtn.style.opacity = "";
+                        prevBtn.style.pointerEvents = "";
+                    }
+
+                    if (scrollLeft >= maxScroll - 5) {
+                        nextBtn.style.opacity = "0";
+                        nextBtn.style.pointerEvents = "none";
+                    } else {
+                        nextBtn.style.opacity = "";
+                        nextBtn.style.pointerEvents = "";
+                    }
+
+                    // Dot indicators active state (both desktop and mobile)
+                    const card = carousel.firstElementChild;
+                    if (card) {
+                        const cardWidth = card.clientWidth;
+                        const gap = 24; // gap-6 (24px)
+                        const activeIndex = Math.round(scrollLeft / (cardWidth + gap));
+                        dots.forEach((dot, idx) => {
+                            if (idx === activeIndex) {
+                                dot.classList.add("active");
+                            } else {
+                                dot.classList.remove("active");
+                            }
+                        });
+                    }
+                };
+
+                prevBtn.addEventListener("click", () => {
+                    const card = carousel.firstElementChild;
+                    if (card) {
+                        const cardWidth = card.clientWidth;
+                        const gap = 24; // gap-6 (24px)
+                        carousel.scrollBy({ left: -(cardWidth + gap), behavior: "smooth" });
+                    }
+                });
+
+                nextBtn.addEventListener("click", () => {
+                    const card = carousel.firstElementChild;
+                    if (card) {
+                        const cardWidth = card.clientWidth;
+                        const gap = 24; // gap-6 (24px)
+                        carousel.scrollBy({ left: cardWidth + gap, behavior: "smooth" });
+                    }
+                });
+
+                carousel.addEventListener("scroll", updateButtonsAndDots);
+                // Run once initially and on resize
+                updateButtonsAndDots();
+                window.addEventListener("resize", updateButtonsAndDots);
+            }
+
+            // Click Handler for Dots
+            dots.forEach((dot) => {
+                dot.addEventListener("click", () => {
+                    const index = parseInt(dot.getAttribute("data-index") || "0");
+                    const card = carousel.firstElementChild;
+                    if (card) {
+                        const cardWidth = card.clientWidth;
+                        const gap = 24; // gap-6 (24px)
+                        carousel.scrollTo({
+                            left: index * (cardWidth + gap),
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+            // Initial Active State
+            if (dots.length > 0) {
+                dots.forEach((d) => d.classList.remove("active"));
+                dots[0].classList.add("active");
+            }
+        });
+    </script>
+</section>

@@ -1,0 +1,32 @@
+---
+id: 2
+title: Badrumsrenovering
+description: Komplett VVS-arbete vid badrumsrenovering – rör, avlopp, golvvärme och vattensäkra installationer.
+icon: HomeModernIcon
+image: https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1400&q=80
+taxDeduction: rot30
+features:
+  - Tätskikt & rör
+  - Golvvärme
+  - Blandare & porslin
+  - Vattensäkert
+processSteps:
+  - step: 1
+    title: Platsbesök & planering
+    description: Vi går igenom dina önskemål och förutsättningarna i badrummet.
+  - step: 2
+    title: Rivning & förberedelser
+    description: Demontering av gammalt porslin och förberedelser av ytor.
+  - step: 3
+    title: Rörläggning & tätskikt
+    description: Dragning av nya rör samt säkra tätskiktsarbeten.
+  - step: 4
+    title: Slutinstallation
+    description: Montering av blandare, dusch och inredning.
+---
+
+Att renovera badrummet är ett stort projekt som kräver noggrannhet och yrkesskicklighet. Vi på VVS Projekt erbjuder komplett VVS-arbete vid badrumsrenoveringar för både privatpersoner och bostadsrättsföreningar. Från den första planeringen till slutbesiktningen ser vi till att arbetet utförs fackmannamässigt och enligt alla gällande branschregler för Säker Vatteninstallation.
+
+Vi hjälper dig med allt från att dra nya rör och avlopp till att installera golvvärme, duschväggar, toaletter och badrumsmöbler. Vatten- och fuktskador är tyvärr vanliga i äldre eller felaktigt byggda badrum, vilket är anledningen till att vi alltid lägger största vikt vid vattensäkra och hållbara installationer. Du kan känna dig trygg i att ditt nya badrum inte bara blir vackert, utan också tryggt och funktionellt under lång tid framöver.
+
+Oavsett om du drömmer om ett modernt spa-liknande badrum eller en klassisk, stilren design, har vi kompetensen att förverkliga dina visioner. Vi samarbetar nära med dig under hela processen och ser till att tidsplanen hålls. Kontakta oss idag för ett förutsättningslöst möte och offert på din drömbadrumsrenovering!

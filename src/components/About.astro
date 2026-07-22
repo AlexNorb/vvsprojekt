@@ -1,0 +1,235 @@
+---
+import { Image } from "astro:assets";
+import CheckBadgeIcon from "./icons/CheckBadgeIcon.astro";
+import BoltIcon from "./icons/BoltIcon.astro";
+import { pb } from "../utils";
+import { siteConfig } from "../config";
+---
+
+<section
+    id="about"
+    class="py-16 bg-vvsblue-50 relative overflow-hidden text-slate-900"
+>
+    {/* Background decoration - Lighter and subtler */}
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div
+            class="absolute w-[500px] h-[500px] bg-white rounded-full mix-blend-overlay filter blur-[100px] opacity-60 -top-24 -left-24"
+        >
+        </div>
+        <div
+            class="absolute w-[300px] h-[300px] bg-vvsblue-100 rounded-full mix-blend-multiply filter blur-[80px] opacity-50 bottom-0 right-0"
+        >
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Intro Header */}
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2
+                class="text-vvscopper font-bold tracking-wide uppercase text-sm mb-2 font-display"
+            >
+                {`Om ${siteConfig.brandName}`}
+            </h2>
+            <h3
+                class="text-3xl font-extrabold sm:text-4xl font-display mb-6 text-slate-900"
+            >
+                Personlig kontakt.<br />Moderna VVS-lösningar.
+            </h3>
+            <p class="text-slate-600 text-lg leading-relaxed">
+                {siteConfig.brandName} bygger på en enkel idé: Du ska kunna lita på din
+                rörläggare. Vi erbjuder trygga installationer med personlig
+                service och moderna VVS-lösningar som förenklar din vardag.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Left Column: The Founder / Personal Touch */}
+            <div class="lg:col-span-7 space-y-8">
+                <div
+                    class="bg-white shadow-xl shadow-vvsblue/5 border border-slate-100 p-8 rounded-lg relative mt-6"
+                >
+                    {
+                        /* Profile Image - keeping rounded-full as it is standard for avatars */
+                    }
+                    <div class="absolute -top-10 -right-2 md:-right-10 w-28 h-28 rounded-full border-4 border-white shadow-lg overflow-hidden bg-vvsblue flex items-center justify-center">
+                        <span class="text-white text-3xl font-display">VP</span>
+                    </div>
+
+                    <h4
+                        class="text-2xl font-bold font-display mb-4 text-slate-900"
+                    >
+                        Din rörläggare
+                    </h4>
+                    <p class="text-slate-600 mb-6 leading-relaxed pr-8">
+                        Jag som driver firman heter {siteConfig.contactPerson} och det är också
+                        jag som utför arbetet hemma hos dig. Det betyder att du
+                        alltid har direktkontakt med den som ansvarar för jobbet
+                        – från första samtalet till färdig installation. Inga
+                        mellanhänder, inga missförstånd.
+                    </p>
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        Oavsett om du behöver hjälp med en värmepump, en
+                        badrumsrenovering eller en vattenläcka, så får du en
+                        noggrann installation utförd av en certifierad
+                        rörläggare som bryr sig om slutresultatet.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <div
+                            class="flex items-center bg-vvsblue-50 px-4 py-2 rounded-md border border-vvsblue-100 text-vvsblue-900"
+                        >
+                            <CheckBadgeIcon
+                                className="h-5 w-5 text-vvscopper mr-2"
+                            />
+                            <span class="text-sm font-medium">Certifierad</span
+                            >
+                        </div>
+                        <div
+                            class="flex items-center bg-vvsblue-50 px-4 py-2 rounded-md border border-vvsblue-100 text-vvsblue-900"
+                        >
+                            <CheckBadgeIcon
+                                className="h-5 w-5 text-vvscopper mr-2"
+                            />
+                            <span class="text-sm font-medium"
+                                >Ansvarsförsäkrad</span
+                            >
+                        </div>
+                        <div
+                            class="flex items-center bg-vvsblue-50 px-4 py-2 rounded-md border border-vvsblue-100 text-vvsblue-900"
+                        >
+                            <CheckBadgeIcon
+                                className="h-5 w-5 text-vvscopper mr-2"
+                            />
+                            <span class="text-sm font-medium"
+                                >Personlig kontakt</span
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                {/* B2B / Subcontractor Context */}
+                <div class="pl-4 border-l-2 border-vvscopper">
+                    <h5
+                        class="font-bold font-display text-lg mb-2 text-slate-900"
+                    >
+                        Till andra byggföretag
+                    </h5>
+                    <p class="text-slate-600 text-sm">
+                        Söker ni en flexibel VVS-partner? Jag är van att
+                        arbeta som underentreprenör och förstår vikten av att
+                        hålla tidsplaner för rördragning och kommunicera med andra yrkesgrupper
+                        på bygget.
+                    </p>
+                </div>
+            </div>
+
+            {
+                /* Right Column: Strategic Partnership - Kept dark/blue for contrast */
+            }
+            <div class="lg:col-span-5">
+                <div
+                    class="bg-gradient-to-br from-[#003ca6] to-[#002255] text-white shadow-xl shadow-vvsblue/20 rounded-lg p-8 border border-white/10 h-full flex flex-col relative overflow-hidden"
+                >
+                    <h4
+                        class="text-xl font-bold font-display mb-2 text-vvscopper relative z-10"
+                    >
+                        Helhetslösningar
+                    </h4>
+                    <h3
+                        class="text-2xl font-bold font-display mb-6 relative z-10"
+                    >
+                        I samarbete med Byggprojekt
+                    </h3>
+
+                    <div
+                        class="grid grid-cols-2 gap-x-4 gap-y-2 mb-6 mt-2 relative z-10"
+                    >
+                        {
+                            [
+                                "Nybyggnation",
+                                "Renovera",
+                                "Kök",
+                                "Badrum",
+                                "Värmepumpar",
+                                "Stambyte",
+                            ].map((item) => (
+                                <div class="flex items-center text-blue-100 text-sm">
+                                    <span class="w-1.5 h-1.5 bg-vvscopper rounded-full mr-2" />
+                                    {item}
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    <p
+                        class="text-blue-100 text-sm mb-4 leading-relaxed relative z-10"
+                    >
+                        Behöver ditt projekt även en snickare? Genom <a
+                            href="https://byggprojekt.se/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-white font-bold hover:underline decoration-vvscopper"
+                            >Byggprojekt</a
+                        > erbjuder vi en sömlös helhet där alla är vana att jobba
+                        tillsammans.
+                    </p>
+                    
+                    <p
+                        class="text-blue-100 text-sm mb-2 leading-relaxed flex-grow relative z-10"
+                    >
+                        Behöver projektet en elektriker? Genom <a
+                            href="https://elprojekt.nu"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-white font-bold hover:underline decoration-vvscopper"
+                            >Elprojekt</a
+                        > – vårt systerbolag – täcker vi hela kedjan.
+                    </p>
+
+                    <ul class="space-y-4 mb-8 mt-2 relative z-10">
+                        <li class="flex items-start">
+                            <CheckBadgeIcon
+                                className="h-5 w-5 text-vvscopper mr-3 mt-0.5 flex-shrink-0"
+                            />
+                            <span class="text-blue-50 text-sm"
+                                ><strong class="text-white block mb-0.5"
+                                    >En kontaktväg</strong
+                                >Vi sköter samordningen med alla hantverkare.</span
+                            >
+                        </li>
+                        <li class="flex items-start">
+                            <CheckBadgeIcon
+                                className="h-5 w-5 text-vvscopper mr-3 mt-0.5 flex-shrink-0"
+                            />
+                            <span class="text-blue-50 text-sm"
+                                ><strong class="text-white block mb-0.5"
+                                    >Trygghet & Kvalitet</strong
+                                >Bara behöriga och försäkrade proffs i
+                                nätverket.</span
+                            >
+                        </li>
+                        <li class="flex items-start">
+                            <CheckBadgeIcon
+                                className="h-5 w-5 text-vvscopper mr-3 mt-0.5 flex-shrink-0"
+                            />
+                            <span class="text-blue-50 text-sm"
+                                ><strong class="text-white block mb-0.5"
+                                    >Effektivitet</strong
+                                >Kortare ledtider när alla drar åt samma håll.</span
+                            >
+                        </li>
+                    </ul>
+
+                    <a
+                        href="https://byggprojekt.se/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center text-sm font-bold text-white hover:text-vvscopper transition-colors relative z-10"
+                    >
+                        Läs mer om Byggprojekt <span class="ml-2">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

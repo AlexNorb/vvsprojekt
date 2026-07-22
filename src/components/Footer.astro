@@ -1,0 +1,177 @@
+---
+import LogoTitle from "./icons/LogoTitle.astro";
+import PhoneIcon from "./icons/PhoneIcon.astro";
+import EnvelopeIcon from "./icons/EnvelopeIcon.astro";
+import FacebookIcon from "./icons/FacebookIcon.astro";
+import InstagramIcon from "./icons/InstagramIcon.astro";
+import StarIcon from "./icons/StarIcon.astro";
+import { pb } from "../utils";
+import { siteConfig } from "../config";
+---
+
+<footer
+    class="bg-slate-900 text-white pt-12 pb-28 md:pb-8 border-t border-slate-800"
+>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-10 text-center sm:text-left"
+        >
+            <!-- Logo & Service Areas -->
+            <div>
+                <div class="mb-5 flex justify-center sm:justify-start">
+                    <LogoTitle
+                        className="w-full max-w-[200px] h-auto"
+                        light={true}
+                    />
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    Din lokala rörläggare. Moderna lösningar, personlig service.
+                </p>
+                <div class="text-xs text-slate-500">
+                    <span class="font-medium text-slate-400"
+                        >Serviceområden:</span
+                    ><br />
+                    {siteConfig.serviceAreas.join(" • ")}
+                </div>
+            </div>
+
+            <!-- Företaget -->
+            <div>
+                <h4 class="font-display font-bold text-lg mb-4">Företaget</h4>
+                <div class="space-y-1 text-slate-400 text-sm">
+                    <p class="text-white font-medium">
+                        {siteConfig.legalName}
+                    </p>
+                    <button
+                        data-copy={siteConfig.orgNr}
+                        class="flex items-center justify-center sm:justify-start gap-1.5 hover:text-vvscopper transition-colors duration-200 group cursor-pointer w-full text-center sm:text-left"
+                        title="Kopiera organisationsnummer"
+                    >
+                        <span>Org.nr {siteConfig.orgNr}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="copy-icon w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="check-icon hidden w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </button>
+                    <button
+                        data-copy={siteConfig.address.full}
+                        class="flex items-center justify-center sm:justify-start gap-1.5 hover:text-vvscopper transition-colors duration-200 group cursor-pointer mt-1 w-full text-center sm:text-left"
+                        title="Kopiera adress"
+                    >
+                        <div class="block">
+                            <p>{siteConfig.address.street}</p>
+                            <p>{siteConfig.address.postalCode} {siteConfig.address.city}</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="copy-icon w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity flex-shrink-0 self-center ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="check-icon hidden w-3.5 h-3.5 text-green-500 flex-shrink-0 self-center ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kontakt -->
+            <div>
+                <h4 class="font-display font-bold text-lg mb-4">Kontakt</h4>
+                <div class="space-y-2 text-sm">
+                    <a
+                        href={siteConfig.phone.href}
+                        class="flex items-center justify-center sm:justify-start gap-2 text-white font-medium hover:text-vvscopper transition-colors group"
+                    >
+                        <PhoneIcon className="w-3.5 h-3.5 text-slate-500 group-hover:text-vvscopper transition-colors" />
+                        {siteConfig.phone.display}
+                    </a>
+                    <a
+                        href={siteConfig.email.href}
+                        class="flex items-center justify-center sm:justify-start gap-2 text-slate-400 hover:text-vvscopper transition-colors group"
+                    >
+                        <EnvelopeIcon className="w-3.5 h-3.5 text-slate-500 group-hover:text-vvscopper transition-colors" />
+                        {siteConfig.email.display}
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div
+                    class="flex items-center justify-center sm:justify-start gap-3 mt-6"
+                >
+                    <a
+                        href={siteConfig.social.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook"
+                        class="w-9 h-9 bg-slate-800 rounded-md flex items-center justify-center hover:bg-[#1877F2] text-slate-400 hover:text-white cursor-pointer transition-all duration-200"
+                    >
+                        <FacebookIcon className="w-4 h-4" />
+                    </a>
+                    <a
+                        href={siteConfig.social.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        class="w-9 h-9 bg-slate-800 rounded-md flex items-center justify-center hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737] text-slate-400 hover:text-white cursor-pointer transition-all duration-200"
+                    >
+                        <InstagramIcon className="w-4 h-4" />
+                    </a>
+                    <a
+                        href={siteConfig.social.googleReview}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Google Reviews"
+                        class="w-9 h-9 bg-slate-800 rounded-md flex items-center justify-center hover:bg-[#FBBC05] text-slate-400 hover:text-white cursor-pointer transition-all duration-200"
+                    >
+                        <StarIcon className="w-4 h-4" />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-slate-800 pt-6">
+            <p class="text-slate-500 text-xs text-center">
+                &copy; {new Date().getFullYear()} {siteConfig.legalName}. Alla rättigheter
+                reserverade.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const copyButtons = document.querySelectorAll("[data-copy]");
+        copyButtons.forEach((btn) => {
+            btn.addEventListener("click", async () => {
+                const textToCopy = btn.getAttribute("data-copy");
+                if (!textToCopy) return;
+
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    
+                    const icon = btn.querySelector(".copy-icon");
+                    const checkIcon = btn.querySelector(".check-icon");
+                    
+                    if (icon && checkIcon) {
+                        icon.classList.add("hidden");
+                        checkIcon.classList.remove("hidden");
+                        btn.classList.add("text-green-500");
+                        btn.classList.remove("hover:text-vvscopper");
+
+                        setTimeout(() => {
+                            icon.classList.remove("hidden");
+                            checkIcon.classList.add("hidden");
+                            btn.classList.remove("text-green-500");
+                            btn.classList.add("hover:text-vvscopper");
+                        }, 1500);
+                    }
+                } catch (err) {
+                    console.error("Kunde inte kopiera text: ", err);
+                }
+            });
+        });
+    });
+</script>

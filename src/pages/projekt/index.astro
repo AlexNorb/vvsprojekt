@@ -1,0 +1,167 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { getCollection } from "astro:content";
+import { siteConfig } from "../../config";
+
+// Fetch projects from Content Collection
+const projects = await getCollection("projects");
+
+// Helper for Title Case
+const toTitleCase = (str: string) => {
+    return str.replace(/\w\S*/g, (txt) => {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+};
+
+// Define Fixed Categories
+const fixedCategories = ["Företag", "Privat"];
+
+// Get Dynamic Categories from project frontmatter
+const dynamicCategories = [
+    ...new Set(projects.flatMap((p) => p.data.filterCategory || [])),
+].map((cat) => toTitleCase(cat));
+
+// Combine all filter options (unique)
+// Order: Alla, Fixed (Privat, Företag), then Dynamic
+const categories = [
+    "Alla",
+    ...fixedCategories,
+    ...dynamicCategories.filter((c) => !fixedCategories.includes(c)),
+];
+---
+
+<MainLayout
+    title="Våra Projekt"
+    description={`Se några av våra senaste rörläggningar, värmepumpsinstallationer och VVS-lösningar i ${siteConfig.serviceAreas.join(", ")}.`}
+>
+    <Navbar />
+
+    <!-- Compact Header -->
+    <div
+        class="pt-24 pb-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in"
+    >
+        <h1
+            class="text-3xl md:text-4xl font-bold font-display text-slate-900 mb-4"
+        >
+            Våra Projekt
+        </h1>
+        <p class="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed">
+            Ett urval av våra senaste projekt inom VVS, värmepumpar och
+            rörläggning.
+        </p>
+    </div>
+
+    <!-- FILTRERING & GRID -->
+    <section class="pb-16 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                {
+                    [...new Set(categories)].map((category: string) => (
+                        <button
+                            class={`filter-btn px-6 py-2 rounded border shadow-sm font-display text-xs tracking-widest transition uppercase ${
+                                category === "Alla"
+                                    ? "active bg-vvscopper text-white border-vvscopper hover:bg-vvscopper/90 shadow-md"
+                                    : "bg-white text-slate-600 border-slate-200 hover:border-vvsblue hover:text-vvsblue"
+                            }`}
+                            data-filter={category}
+                        >
+                            {category}
+                        </button>
+                    ))
+                }
+            </div>
+
+            <!-- Grid -->
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                id="project-grid"
+            >
+                {
+                    projects.map((project) => (
+                        <ProjectCard
+                            title={project.data.title}
+                            category={project.data.serviceType}
+                            serviceType={project.data.serviceType}
+                            filterCategory={project.data.filterCategory || []}
+                            description={project.data.description || ""}
+                            image={project.data.coverImage}
+                            slug={project.slug}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <Footer />
+</MainLayout>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        // Filter Logik
+        const buttons = document.querySelectorAll(".filter-btn");
+        const cards = document.querySelectorAll(".project-card");
+
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                // Reset state
+                buttons.forEach((b) => {
+                    b.classList.remove(
+                        "bg-vvscopper",
+                        "text-white",
+                        "border-vvscopper",
+                        "hover:bg-vvscopper/90",
+                        "shadow-md",
+                    );
+                    b.classList.add(
+                        "bg-white",
+                        "text-slate-600",
+                        "border-slate-200",
+                        "hover:border-vvsblue",
+                        "hover:text-vvsblue",
+                    );
+                });
+                // Set active state
+                btn.classList.remove(
+                    "bg-white",
+                    "text-slate-600",
+                    "border-slate-200",
+                    "hover:border-vvsblue",
+                    "hover:text-vvsblue",
+                );
+                btn.classList.add(
+                    "bg-vvscopper",
+                    "text-white",
+                    "border-vvscopper",
+                    "hover:bg-vvscopper/90",
+                    "shadow-md",
+                );
+
+                const filterValue = btn.getAttribute("data-filter")?.toLowerCase();
+
+                cards.forEach((card) => {
+                    const cardEl = card as HTMLElement;
+                    const cardCategories = (
+                        card.getAttribute("data-category") || ""
+                    ).toLowerCase();
+                    const categoryList = cardCategories.split(",");
+
+                    if (
+                        filterValue === "alla" ||
+                        (filterValue && categoryList.includes(filterValue))
+                    ) {
+                        cardEl.style.display = "block";
+                        cardEl.classList.add("animate-fade-in");
+                    } else {
+                        cardEl.style.display = "none";
+                        cardEl.classList.remove("animate-fade-in");
+                    }
+                });
+            });
+        });
+    });
+</script>

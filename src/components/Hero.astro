@@ -1,0 +1,163 @@
+---
+import { Image } from "astro:assets";
+import ChevronDownIcon from "./icons/ChevronDownIcon.astro";
+import heroRightImg from "../assets/images/hero/hero-right.JPG";
+import { pb } from "../utils";
+import { siteConfig } from "../config";
+---
+
+<section
+    id="home"
+    class="relative min-h-screen flex items-center pt-20 pb-16 lg:pb-24 overflow-hidden bg-slate-900"
+>
+    {/* Background Image & Overlay */}
+    <div class="absolute inset-0 z-0">
+        <Image
+            src={heroRightImg}
+            alt="Modern Technology Background"
+            class="w-full h-full object-cover opacity-100"
+            widths={[640, 1024, 1920]}
+            sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 100vw"
+        />
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-white/70 via-white/40 to-white/0"
+        >
+        </div>
+    </div>
+
+    <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center"
+    >
+        {/* Left Column: Text & CTA */}
+        <div
+            class="flex flex-col items-start justify-center text-left lg:col-span-7 xl:col-span-8"
+        >
+            <h1
+                class="text-3xl tracking-tight font-extrabold text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl font-display leading-tight animate-fade-in-up max-w-5xl"
+                style="animation-delay: 0.2s"
+            >
+                Rörläggare
+                <!-- Wrapper for the vertical slide text -->
+                <span
+                    class="inline-flex flex-col h-[calc(theme(fontSize.3xl)*theme(lineHeight.tight))] sm:h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.5xl)*theme(lineHeight.tight))] lg:h-[calc(theme(fontSize.6xl)*theme(lineHeight.tight))] overflow-hidden align-bottom"
+                >
+                    <ul
+                        class="block animate-text-slide-vertical text-left leading-tight [&_li]:block"
+                    >
+                        {
+                            siteConfig.serviceAreas.map((area) => (
+                                <li>{area}</li>
+                            ))
+                        }
+                        <li aria-hidden="true">{siteConfig.serviceAreas[0]}</li>
+                    </ul>
+                </span>
+                <br />
+                <span class="text-vvsblue">Moderna VVS-lösningar, </span><br />
+                <span class="text-vvsblue">personlig service.</span>
+            </h1>
+
+            {/* Mobile Service Grid removed */}
+
+            <p
+                class="mt-8 text-xl text-slate-900 leading-relaxed font-sans max-w-2xl mr-auto animate-fade-in-up opacity-0"
+                style="animation-delay: 0.4s; animation-fill-mode: forwards"
+            >
+                Jag finns vid din sida genom hela projektet – från första idén
+                till färdig installation. Det spelar ingen roll om du behöver
+                hjälp med en värmepump, badrumsrenovering eller
+                rörarbeten i din nya villa.
+                <br />
+                <span class="font-semibold"
+                    >Starta ditt nästa VVS Projekt nu!</span
+                >
+            </p>
+
+            <div
+                class="mt-10 flex flex-col sm:flex-row gap-4 justify-start animate-fade-in-up opacity-0"
+                style="animation-delay: 0.6s; animation-fill-mode: forwards"
+            >
+                <a
+                    href={pb("/#contact")}
+                    class="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-vvsblue font-display rounded-md hover:bg-vvsblue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vvsblue shadow-[0_4px_14px_0_rgba(0,118,255,0.39)] hover:shadow-[0_6px_20px_rgba(0,118,255,0.23)] hover:-translate-y-1"
+                >
+                    Ta kontakt
+                    <div class="ml-2 w-5 h-5 inline-block">
+                        <ChevronDownIcon />
+                    </div>
+                </a>
+
+                <a
+                    href="#services"
+                    class="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-700 transition-all duration-200 bg-white/50 border border-slate-200 font-display rounded-md hover:bg-white hover:text-vvsblue hover:border-vvsblue/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-200 backdrop-blur-sm"
+                >
+                    Tjänster
+                </a>
+            </div>
+        </div>
+
+        {/* Right Column: Empty for background image visibility */}
+        <div class="hidden lg:block w-full lg:col-span-5 xl:col-span-4">
+            {/* Content removed for cleaner look */}
+        </div>
+
+        {/* Glow effects - Centered (Moved to behind grid/content generally) */}
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] sm:w-[500px] h-[80vw] sm:h-[500px] bg-vvsblue rounded-full mix-blend-screen filter blur-[100px] sm:blur-[120px] opacity-20 animate-pulse-slow pointer-events-none -z-10"
+        >
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Simple float animation if not in global css yet */
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+    .animate-pulse-slow {
+        animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    /* Vertical Text Slide Animation */
+
+    @keyframes text-slide-vertical {
+        0%,
+        16% {
+            transform: translateY(0%);
+        }
+        20%,
+        36% {
+            transform: translateY(-16.66%);
+        }
+        40%,
+        56% {
+            transform: translateY(-33.33%);
+        }
+        60%,
+        76% {
+            transform: translateY(-50%);
+        }
+        80%,
+        96% {
+            transform: translateY(-66.66%);
+        }
+        100% {
+            transform: translateY(-83.33%);
+        }
+    }
+
+    .animate-text-slide-vertical {
+        animation: text-slide-vertical 10s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+    }
+</style>
