@@ -9,10 +9,9 @@ interface Props {
 const { className = "", light = false } = Astro.props;
 ---
 
-<a href="/" class:list={["inline-flex items-center gap-2 group", className]}>
-    <Image
-        src={fullLogo}
-        alt="VVS PROJEKT - Ditt projekt i fokus"
-        class:list={["h-auto w-auto", className, light ? "brightness-0 invert" : ""]}
-    />
-</a>
+<Image
+    src={fullLogo}
+    alt="VVS PROJEKT - Ditt projekt i fokus"
+    class:list={["h-auto w-auto block", className, light ? "brightness-0 invert" : ""]}
+    loading="eager"
+/>

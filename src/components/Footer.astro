@@ -19,10 +19,12 @@ import { siteConfig } from "../config";
             <!-- Logo & Service Areas -->
             <div>
                 <div class="mb-5 flex justify-center sm:justify-start">
-                    <LogoTitle
-                        className="w-full max-w-[200px] h-auto"
-                        light={true}
-                    />
+                    <a href={pb("/")} aria-label={siteConfig.brandName} class="inline-block">
+                        <LogoTitle
+                            className="w-full max-w-[200px] h-auto"
+                            light={true}
+                        />
+                    </a>
                 </div>
                 <p class="text-slate-400 text-sm leading-relaxed mb-4">
                     Din lokala rörläggare. Moderna lösningar, personlig service.
