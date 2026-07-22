@@ -59,17 +59,19 @@ export const siteConfig = {
 
   /** Serviceområden (kommuner) */
   serviceAreas: [
-    "TODO Kommun 1",
-    "TODO Kommun 2",
-    "TODO Kommun 3",
+    "Tjörn",
+    "Orust",
+    "Stenungsund",
+    "Uddevalla",
+    "Kungälv",
   ],
 
   /** SEO-metadata */
   seo: {
     defaultDescription:
-      "Lokal rörläggare och värmepumpsinstallatör. Personlig service och moderna VVS-lösningar – värmepumpar, badrumsrenovering, rör & avlopp. Starta ditt nästa VVS Projekt nu!",
+      "Lokal rörläggare och värmepumpsinstallatör i Tjörn, Orust, Stenungsund, Uddevalla & Kungälv. Personlig service och moderna VVS-lösningar – värmepumpar, badrumsrenovering, rör & avlopp. Starta ditt nästa VVS Projekt nu!",
     geoRegion: "SE-O", // Västra Götaland
-    geoPlacename: "TODO Ort",
+    geoPlacename: "Tjörn, Orust, Stenungsund, Uddevalla, Kungälv",
   },
 
   /** Schema.org strukturerad data */
