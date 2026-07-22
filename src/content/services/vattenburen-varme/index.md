@@ -3,7 +3,7 @@ id: 4
 title: Vattenburen Värme
 description: Golvvärme, radiatorer och kompletta värmesystem – från planering till installation.
 icon: BatteryIcon
-image: https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1400&q=80
+image: ../../../assets/images/vattenburenvärme.png
 taxDeduction: rot30
 features:
   - Golvvärme

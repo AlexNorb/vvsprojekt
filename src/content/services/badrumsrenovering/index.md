@@ -3,7 +3,7 @@ id: 2
 title: Badrumsrenovering
 description: Komplett VVS-arbete vid badrumsrenovering – rör, avlopp, golvvärme och vattensäkra installationer.
 icon: HomeModernIcon
-image: https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1400&q=80
+image: ../../../assets/images/badrum.png
 taxDeduction: rot30
 features:
   - Tätskikt & rör

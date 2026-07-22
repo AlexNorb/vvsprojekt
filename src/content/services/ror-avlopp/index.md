@@ -3,7 +3,7 @@ id: 3
 title: Rör & Avlopp
 description: Stambyten, avloppsspolning, nyinstallation av vattenledningar och reparation av läckor.
 icon: WrenchScrewdriverIcon
-image: https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1400&q=80
+image: ../../../assets/images/rör_avlopp.jpeg
 taxDeduction: rot30
 features:
   - Stambyten

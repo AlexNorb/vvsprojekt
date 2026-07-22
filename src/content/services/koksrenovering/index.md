@@ -3,7 +3,7 @@ id: 6
 title: Köksrenovering VVS
 description: VVS-arbeten vid köksrenovering – diskmaskin, köksblandare, avlopp och vattenanslutningar.
 icon: CpuChipIcon
-image: https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1400&q=80
+image: ../../../assets/images/kök.jpeg
 taxDeduction: rot30
 features:
   - Köksblandare

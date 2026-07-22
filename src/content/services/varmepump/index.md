@@ -3,7 +3,7 @@ id: 1
 title: Värmepumpar
 description: Installation och service av luft/vatten, bergvärme och luft/luft-värmepumpar. Vi hjälper dig välja rätt system för ditt hem.
 icon: BoltIcon
-image: https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=1400&q=80
+image: ../../../assets/images/värmepump.png
 taxDeduction: rot30
 features:
   - COP-beräkning

@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import ChevronDownIcon from "./icons/ChevronDownIcon.astro";
-import heroRightImg from "../assets/images/hero/hero-right.JPG";
+import heroImg from "../assets/images/hero.png";
 import { pb } from "../utils";
 import { siteConfig } from "../config";
 ---
@@ -13,8 +13,8 @@ import { siteConfig } from "../config";
     {/* Background Image & Overlay */}
     <div class="absolute inset-0 z-0">
         <Image
-            src={heroRightImg}
-            alt="Modern Technology Background"
+            src={heroImg}
+            alt="VVS Projekt Bakgrund"
             class="w-full h-full object-cover opacity-100"
             widths={[640, 1024, 1920]}
             sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 100vw"
