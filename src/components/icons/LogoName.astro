@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import fullLogo from "../../assets/logo/full_logo.svg";
+
 interface Props {
     className?: string;
     light?: boolean;
@@ -6,45 +9,8 @@ interface Props {
 const { className = "", light = false } = Astro.props;
 ---
 
-<svg
-    viewBox="0 0 280 50"
-    xmlns="http://www.w3.org/2000/svg"
-    class={className}
-    aria-label="VVS PROJEKT"
->
-    {/* Brand name */}
-    <text
-        x="0"
-        y="30"
-        font-family="'Bank Gothic Light', sans-serif"
-        font-weight="300"
-        font-size="28"
-        letter-spacing="2"
-        fill={light ? "#ffffff" : "#003ca6"}
-    >
-        VVS PROJEKT
-    </text>
-
-    {/* Tagline */}
-    <text
-        x="0"
-        y="46"
-        font-family="'Bank Gothic Light', sans-serif"
-        font-weight="300"
-        font-size="9"
-        letter-spacing="4"
-        fill="#c17f59"
-    >
-        DITT PROJEKT I FOKUS
-    </text>
-
-    {/* Accent line */}
-    <line
-        x1="0"
-        y1="34"
-        x2="220"
-        y2="34"
-        stroke="rgba(193,127,89,0.3)"
-        stroke-width="0.5"
-    />
-</svg>
+<Image
+    src={fullLogo}
+    alt="VVS PROJEKT"
+    class:list={["h-auto w-auto", className, light ? "brightness-0 invert" : ""]}
+/>
