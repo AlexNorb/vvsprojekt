@@ -3,17 +3,12 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
-// 1. Reliable check: Are we running the "build" command or GitHub Actions?
+// 1. Reliable check: Are we running the "build" command?
 const isProd = process.argv.includes('build');
-const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
 
 export default defineConfig({
-  site: isGitHubPages
-    ? 'https://alexnorb.github.io'
-    : isProd
-    ? 'https://vvsprojekt.se'
-    : 'http://localhost:4321',
-  base: isGitHubPages ? '/vvsprojekt/' : '/',
+  site: isProd ? 'https://vvsprojekt.se' : 'http://localhost:4321',
+  base: '/',
 
   // 2. We explicitly tell TypeScript the result is one of the allowed strings
   trailingSlash: isProd ? /** @type {'always'} */ ('always') : /** @type {'ignore'} */ ('ignore'),
