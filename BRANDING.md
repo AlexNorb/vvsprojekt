@@ -10,10 +10,10 @@ Visuell identitet för VVS Projekt. Alla färger, typografi och UI-stilar defini
 |------|----------|-----|------------|
 | **Brand Primary** | `--color-brand-primary` | `#003ca6` | Huvudfärg, rubriker, primära knappar |
 | **Brand Dark** | `--color-brand-dark` | `#002a75` | Mörkare nyanser, hover, kontrast |
-| **Brand Accent** | `--color-brand-accent` | `#c17f59` | CTA, highlights, accenter (koppar) |
+| **Brand Accent** | `--color-brand-accent` | `#C75746` | CTA, highlights, accenter (koppar) |
 | **Brand Gray** | `--color-brand-gray` | `#f8fafc` | Bakgrunder, subtila sektioner |
 | **Surface Dark** | `--color-slate-900` | `#0f172a` | Mörka bakgrunder, footer |
-| **Hover Accent** | *(Hårdkodad)* | `#a86a4a` | `.btn-accent:hover` |
+| **Hover Accent** | *(Hårdkodad)* | `#b24333` | `.btn-accent:hover` |
 
 ### Tailwind-alias
 * `--color-vvsblue` → `--color-brand-primary`
@@ -42,15 +42,15 @@ Visuell identitet för VVS Projekt. Alla färger, typografi och UI-stilar defini
 ### Knappar
 
 #### Accent Button (`.btn-accent`)
-* **Bakgrund**: Koppar (`#c17f59`)
+* **Bakgrund**: Koppar (`#C75746`)
 * **Transition**: `all 0.3s cubic-bezier(0.4, 0, 0.2, 1)`
-* **Hover**: bakgrund `#a86a4a`, transform `-1px`, skugga `rgba(193, 127, 89, 0.3)`
+* **Hover**: bakgrund `#b24333`, transform `-1px`, skugga `rgba(199, 87, 70, 0.3)`
 
 ### Skuggor
 | Namn | Variabel | Värde | Användning |
 |------|----------|-------|------------|
 | Soft Shadow | `--shadow-soft` | `0 4px 20px -2px rgba(0,0,0,0.05)` | Kort, containers |
-| Glow Shadow | `--shadow-glow` | `0 0 15px rgba(193,127,89,0.3)` | Fokus, aktiva element |
+| Glow Shadow | `--shadow-glow` | `0 0 15px rgba(199,87,70,0.3)` | Fokus, aktiva element |
 
 ### Special-klasser
 * `.logo-text` – Bank Gothic Light, letter-spacing `-1px`

@@ -23,7 +23,7 @@ html {
   /* Colors */
   --color-brand-primary: #003ca6;
   --color-brand-dark: #002a75;
-  --color-brand-accent: #c17f59;
+  --color-brand-accent: #C75746;
   --color-brand-gray: #f8fafc;
 
   /* Semantic aliases (used throughout components via Tailwind classes) */
@@ -36,7 +36,7 @@ html {
 
   /* Shadows */
   --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-  --shadow-glow: 0 0 15px rgba(193, 127, 89, 0.3);
+  --shadow-glow: 0 0 15px rgba(199, 87, 70, 0.3);
 
   /* Animations */
   --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
@@ -66,7 +66,7 @@ html {
 }
 
 .btn-accent:hover {
-  background-color: #a86a4a;
+  background-color: #b24333;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(193, 127, 89, 0.3);
+  box-shadow: 0 4px 12px rgba(199, 87, 70, 0.3);
 }

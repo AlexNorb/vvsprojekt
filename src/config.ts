@@ -13,41 +13,41 @@
 
 export const siteConfig = {
   /** Företagets visningsnamn (versaler, för logga & headings) */
-  brandName: "VVS PROJEKT",
+  brandName: "VVSPROJEKT",
 
   /** Företagets juridiska namn */
-  legalName: "TODO Företagsnamn AB",
+  legalName: "VVSProjekt i Uddevalla AB",
 
   /** Organisationsnummer */
-  orgNr: "TODO-xxxxxx-xxxx",
+  orgNr: "559592-2583",
 
   /** Webbplatsens domän (utan trailing slash) */
   domain: "https://vvsprojekt.se",
 
   /** Kontaktperson */
-  contactPerson: "TODO Namn",
+  contactPerson: "Kalle",
 
   /** Telefonnummer */
   phone: {
     /** Visningsformat */
-    display: "TODO-XXX XX XX",
+    display: "073-678 51 82",
     /** tel:-länk (utan mellanslag, med landskod) */
-    href: "tel:+46XXXXXXXXX",
+    href: "tel:+46736785182",
   },
 
   /** E-postadress */
   email: {
-    display: "TODO@vvsprojekt.se",
-    href: "mailto:TODO@vvsprojekt.se",
+    display: "info@vvsprojekt.se",
+    href: "mailto:info@vvsprojekt.se",
   },
 
   /** Fysisk adress */
   address: {
-    street: "TODO Gatuadress",
-    postalCode: "TODO XX XX",
-    city: "TODO Ort",
+    street: "Friggavägen 6",
+    postalCode: "451 76",
+    city: "Uddevalla",
     /** Hela adressen som en sträng (för kopiering) */
-    full: "TODO Gatuadress, TODO XX XX TODO Ort",
+    full: "Friggavägen 6, 451 76 Uddevalla",
   },
 
   /** Sociala medier & review-länkar */
@@ -69,7 +69,7 @@ export const siteConfig = {
   /** SEO-metadata */
   seo: {
     defaultDescription:
-      "Lokal rörläggare och värmepumpsinstallatör i Tjörn, Orust, Stenungsund, Uddevalla & Kungälv. Personlig service och moderna VVS-lösningar – värmepumpar, badrumsrenovering, rör & avlopp. Starta ditt nästa VVS Projekt nu!",
+      "Auktoriserad VVS-installatör i Tjörn, Orust, Stenungsund, Uddevalla & Kungälv. Kompletta lösningar inom värmepumpar, badrumsrenovering, rördragning och service. Kontakta oss för offert.",
     geoRegion: "SE-O", // Västra Götaland
     geoPlacename: "Tjörn, Orust, Stenungsund, Uddevalla, Kungälv",
   },
@@ -90,6 +90,11 @@ export const siteConfig = {
       "Vattenläcka",
     ],
     priceRange: "$$",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "5",
+    },
   },
 
   /** Kontaktformulär – Cloudflare Worker endpoint */

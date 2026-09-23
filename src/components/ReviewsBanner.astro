@@ -42,6 +42,24 @@ const reviews = [
     class="bg-white border-b border-slate-100 py-6 overflow-hidden relative"
 >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Aggregated Score Header */}
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mb-8 text-center sm:text-left">
+            <div class="flex items-center gap-2 text-2xl font-bold text-slate-900 font-display">
+                <span>5.0</span>
+                <div class="flex text-vvscopper">
+                    <StarIcon className="w-6 h-6" />
+                    <StarIcon className="w-6 h-6" />
+                    <StarIcon className="w-6 h-6" />
+                    <StarIcon className="w-6 h-6" />
+                    <StarIcon className="w-6 h-6" />
+                </div>
+            </div>
+            <div class="h-8 w-px bg-slate-200 hidden sm:block"></div>
+            <p class="text-sm text-slate-600 font-medium">
+                Baserat på <span class="font-bold text-slate-900">5+ omdömen</span> från riktiga kunder
+            </p>
+        </div>
+
         <div class="relative group px-1 md:px-8">
             {/* Previous Button */}
             <button
@@ -65,7 +83,7 @@ const reviews = [
                             class="banner-card w-[85%] sm:w-[350px] md:w-[calc((100%-3rem)/3)] flex-shrink-0 snap-start flex flex-col"
                             data-index={index}
                         >
-                            <div class="flex flex-col p-4 rounded-lg bg-slate-50 border border-slate-100 hover:border-vvsblue/20 hover:shadow-sm transition-all duration-300 h-full">
+                            <div class="flex flex-col p-5 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300 h-full">
                                 <div class="flex items-center justify-between mb-2">
                                     <h4 class="text-sm font-bold text-slate-900 truncate pr-2">
                                         {review.name}
@@ -123,21 +141,7 @@ const reviews = [
             }
         </div>
 
-        {/* Leave Review CTA */}
-        <div class="flex justify-center mt-4">
-            <a
-                href={siteConfig.social.googleReview}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 hover:text-white bg-slate-100 hover:bg-gradient-to-r hover:from-[#4285F4] hover:via-[#34A853] hover:to-[#FBBC04] rounded-full transition-all duration-300 group"
-            >
-                <GoogleIcon className="w-4 h-4 text-[#4285F4] group-hover:text-white transition-colors" />
-                <span>Nöjd kund? Lämna ett omdöme!</span>
-                <span class="group-hover:translate-x-1 transition-transform"
-                    >→</span
-                >
-            </a>
-        </div>
+
     </div>
 
     <style>

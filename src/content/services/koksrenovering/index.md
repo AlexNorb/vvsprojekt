@@ -29,6 +29,7 @@ Köket är hemmets hjärta, och när det ska renoveras är det av yttersta vikt 
 
 Vi hjälper dig med allt vatten- och avloppsrelaterat i ditt nya kök. Det kan innebära flytt av vatten och avlopp för att passa en ny planlösning, installation av köksblandare, anslutning av diskmaskin samt inkoppling av vattenanslutna vitvaror. Allt arbete utförs av certifierade montörer med fokus på högsta kvalitet och säkerhet. 
 
-Eftersom vi ofta arbetar i projekt där flera yrkesgrupper är inblandade, är vi vana vid att samordna vårt arbete med snickare, elektriker och andra hantverkare för att renoveringsprocessen ska flyta på så smidigt som möjligt för dig.
+### Smidig helhetslösning för hela köksprojektet
+En köksrenovering kräver alltid insatser från flera olika yrkesgrupper. Genom vårt tätta samarbete med **[Byggprojekt](https://byggprojekt.se/)** och vårt systerbolag **[Elprojekt](https://elprojekt.nu/)** kan vi erbjuda en komplett och fullt samordnad helhetslösning för ditt kök. Vi sköter kommunikationen och schemaläggningen mellan rörläggare, snickare och elektriker. Det ger dig en bekvämare renoveringsresa, sparar tid och säkerställer ett perfekt slutresultat utan onödiga dröjsmål.
 
-Satsa på professionell hjälp och säkerställ att ditt nya drömkök också blir en trygg investering fri från vattenskador. Kontakta oss för rådgivning kring VVS i ditt köksprojekt!
+Satsa på professionell hjälp och säkerställ att ditt nya drömkök också blir en trygg investering fri från vattenskador. Kontakta oss för rådgivning kring ditt köksprojekt!

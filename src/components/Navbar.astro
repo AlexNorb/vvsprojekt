@@ -115,15 +115,19 @@ const navItems = [
                     >
                         <InstagramIcon className="w-5 h-5" />
                     </a>
-                    <a
-                        href={siteConfig.social.googleReview}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Google Reviews"
-                        class="w-8 h-8 rounded-md flex items-center justify-center text-slate-500 hover:text-[#FBBC05] transition-all duration-200"
-                    >
-                        <StarIcon className="w-5 h-5" />
-                    </a>
+                    {
+                        siteConfig.social.googleReview && siteConfig.social.googleReview !== "#" && (
+                            <a
+                                href={siteConfig.social.googleReview}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Google Reviews"
+                                class="w-8 h-8 rounded-md flex items-center justify-center text-slate-500 hover:text-[#FBBC05] transition-all duration-200"
+                            >
+                                <StarIcon className="w-5 h-5" />
+                            </a>
+                        )
+                    }
                 </div>
             </div>
 
@@ -197,15 +201,19 @@ const navItems = [
                 >
                     <InstagramIcon className="w-6 h-6" />
                 </a>
-                <a
-                    href={siteConfig.social.googleReview}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Google Reviews"
-                    class="w-10 h-10 rounded-md flex items-center justify-center text-[#FBBC05] transition-all duration-200"
-                >
-                    <StarIcon className="w-6 h-6" />
-                </a>
+                {
+                    siteConfig.social.googleReview && siteConfig.social.googleReview !== "#" && (
+                        <a
+                            href={siteConfig.social.googleReview}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Google Reviews"
+                            class="w-10 h-10 rounded-md flex items-center justify-center text-[#FBBC05] transition-all duration-200"
+                        >
+                            <StarIcon className="w-6 h-6" />
+                        </a>
+                    )
+                }
             </div>
         </div>
     </div>

@@ -27,7 +27,7 @@ import { siteConfig } from "../config";
                     </a>
                 </div>
                 <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                    Din lokala rörläggare. Moderna lösningar, personlig service.
+                    Er auktoriserade VVS-partner. Moderna lösningar och trygga installationer.
                 </p>
                 <div class="text-xs text-slate-500">
                     <span class="font-medium text-slate-400"
@@ -120,15 +120,19 @@ import { siteConfig } from "../config";
                     >
                         <InstagramIcon className="w-4 h-4" />
                     </a>
-                    <a
-                        href={siteConfig.social.googleReview}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Google Reviews"
-                        class="w-9 h-9 bg-slate-800 rounded-md flex items-center justify-center hover:bg-[#FBBC05] text-slate-400 hover:text-white cursor-pointer transition-all duration-200"
-                    >
-                        <StarIcon className="w-4 h-4" />
-                    </a>
+                    {
+                        siteConfig.social.googleReview && siteConfig.social.googleReview !== "#" && (
+                            <a
+                                href={siteConfig.social.googleReview}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Google Reviews"
+                                class="w-9 h-9 bg-slate-800 rounded-md flex items-center justify-center hover:bg-[#FBBC05] text-slate-400 hover:text-white cursor-pointer transition-all duration-200"
+                            >
+                                <StarIcon className="w-4 h-4" />
+                            </a>
+                        )
+                    }
                 </div>
             </div>
         </div>

@@ -1,8 +1,8 @@
 ---
 title: Badrumsrenovering Lägenhet
-client: BRF Exempel
+client: Privat kund
 completionDate: 2025-11-20
-serviceType: Företag
+serviceType: Privat
 coverImage: ../../../assets/images/projekt_badrum.png
 coverAlt: Renoverat badrum med modern inredning
 description: Komplett VVS-arbete vid badrumsrenovering i flerfamiljshus.
