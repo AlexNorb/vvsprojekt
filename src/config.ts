@@ -30,9 +30,9 @@ export const siteConfig = {
   /** Telefonnummer */
   phone: {
     /** Visningsformat */
-    display: "073-678 51 82",
+    display: "073-678 51 81",
     /** tel:-länk (utan mellanslag, med landskod) */
-    href: "tel:+46736785182",
+    href: "tel:+46736785181",
   },
 
   /** E-postadress */

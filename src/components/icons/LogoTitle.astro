@@ -12,6 +12,6 @@ const { className = "", light = false } = Astro.props;
 <Image
     src={fullLogo}
     alt="VVS PROJEKT - Ditt projekt i fokus"
-    class:list={["h-auto w-auto block", className, light ? "brightness-0 invert" : ""]}
+    class:list={["block object-contain", className, light ? "brightness-0 invert" : ""]}
     loading="eager"
 />
