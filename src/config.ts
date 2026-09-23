@@ -98,7 +98,7 @@ export const siteConfig = {
   },
 
   /** Kontaktformulär – Cloudflare Worker endpoint */
-  contactFormEndpoint: "TODO_CLOUDFLARE_WORKER_URL",
+  contactFormEndpoint: "https://vvsprojekt-resend.allecc.workers.dev/",
 
   /** Systerbolag / Partners */
   partners: {
