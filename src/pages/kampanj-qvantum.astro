@@ -1,0 +1,200 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import MobileActionBar from "../components/MobileActionBar.astro";
+import CheckBadgeIcon from "../components/icons/CheckBadgeIcon.astro";
+import ContactForm from "../components/ContactForm.astro";
+import PhoneIcon from "../components/icons/PhoneIcon.astro";
+import EnvelopeIcon from "../components/icons/EnvelopeIcon.astro";
+import { siteConfig } from "../config";
+import { Image } from "astro:assets";
+import { pb } from "../utils";
+
+import kampanjImg1 from "../assets/images/kampanj_qe1.webp";
+import kampanjImg2 from "../assets/images/kampanj_qe2.webp";
+---
+
+<MainLayout
+    title="Kampanj: Qvantum QE från 99 000 kr"
+    description="Just nu erbjuder vi Qvantum QE från 99 000 kr inklusive standardinstallation vid utbyte av befintlig äldre frånluftsvärmepump."
+    image={typeof kampanjImg1 === "string" ? kampanjImg1 : kampanjImg1.src}
+>
+    <Navbar />
+
+    <div class="pt-24 pb-24 min-h-screen bg-slate-50 animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden border border-slate-100">
+                {/* Header Image */}
+                <div class="relative h-64 md:h-96 bg-vvsblue">
+                    <a
+                        href={pb("/")}
+                        class="absolute top-4 left-4 z-20 inline-flex items-center text-white/90 hover:text-white bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-sm px-4 py-2 rounded-full transition-all font-bold text-xs uppercase tracking-wider cursor-pointer border border-white/10"
+                    >
+                        <span class="mr-2">←</span> Tillbaka
+                    </a>
+
+                    <Image
+                        src={kampanjImg1}
+                        alt="Qvantum QE Kampanj"
+                        class="w-full h-full object-cover opacity-70"
+                        widths={[360, 720, 1080]}
+                        sizes="(max-width: 1080px) 100vw, 1080px"
+                    />
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                    
+                    <div class="absolute bottom-0 left-0 p-6 md:p-12 w-full">
+                        <span class="inline-block bg-vvscopper text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 shadow-lg">
+                            Tidsbegränsat Erbjudande
+                        </span>
+                        <h1 class="text-3xl md:text-5xl font-display font-bold text-white mb-2 leading-tight">
+                            Byt till Qvantum QE
+                        </h1>
+                        <p class="text-xl md:text-2xl text-slate-200 font-medium">
+                            Just nu från 99 000 kr <span class="text-sm font-normal text-slate-300 ml-2">inkl. installation</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3">
+                    {/* Main Content */}
+                    <div class="lg:col-span-2 p-6 md:p-12">
+                        <div class="prose prose-lg prose-slate max-w-none prose-headings:font-display prose-headings:text-slate-900 prose-a:text-vvsblue hover:prose-a:text-vvscopper">
+                            <p class="lead text-xl text-slate-600 mb-8 border-l-4 border-vvsblue pl-6 italic">
+                                Vi på VVS Projekt är stolta över att tillsammans med Qvantum kunna erbjuda våra kunder ett riktigt bra kampanjpris på Qvantum QE – en modern frånluftsvärmepump för värme, varmvatten, svalka och ventilation.
+                            </p>
+
+                            <h3>Har du en äldre frånluftsvärmepump hemma?</h3>
+                            <p>
+                                Då kan det vara ett bra tillfälle att byta innan vintern. Just nu erbjuder vi <strong>Qvantum QE från 99 000 kr inklusive standardinstallation</strong>.
+                            </p>
+                            <p class="text-sm text-slate-500 bg-slate-50 p-4 rounded-lg border border-slate-100">
+                                <em>Kampanjpriset avser Qvantum QE4 vid utbyte av befintlig äldre frånluftsvärmepump och gäller vid beställning senast 30 september.</em>
+                            </p>
+
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center mt-12 mb-6">
+                                <div class="md:col-span-4 lg:col-span-4">
+                                    <Image
+                                        src={kampanjImg2}
+                                        alt="Qvantum QE frånluftsvärmepump vit"
+                                        class="w-full max-w-[280px] h-auto mx-auto block rounded-xl shadow-md m-0"
+                                        widths={[360, 720]}
+                                        sizes="(max-width: 768px) 280px, 33vw"
+                                    />
+                                </div>
+                                <div class="md:col-span-8 lg:col-span-8">
+                                    <h3 class="mt-0">En modern allt-i-ett-lösning för ditt hem</h3>
+                                    <p class="mb-0">
+                                        Qvantum QE är utvecklad för moderna hem och kombinerar flera funktioner i en kompakt lösning:
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <ul class="space-y-4 mb-12 list-none pl-0">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1 mr-3"><CheckBadgeIcon className="w-6 h-6 text-vvsblue" /></div>
+                                    <span><strong>Värme</strong> – energieffektiv uppvärmning med varvtalsreglerad kompressor.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1 mr-3"><CheckBadgeIcon className="w-6 h-6 text-vvsblue" /></div>
+                                    <span><strong>Varmvatten</strong> – integrerad varmvattenberedning för hushållets behov.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1 mr-3"><CheckBadgeIcon className="w-6 h-6 text-vvsblue" /></div>
+                                    <span><strong>Ventilation</strong> – tar tillvara energi ur husets frånluft.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1 mr-3"><CheckBadgeIcon className="w-6 h-6 text-vvsblue" /></div>
+                                    <span><strong>Svalka</strong> – möjlighet till behagligare inomhustemperatur under varma dagar.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1 mr-3"><CheckBadgeIcon className="w-6 h-6 text-vvsblue" /></div>
+                                    <span><strong>Låg ljudnivå</strong> – utvecklad för att arbeta effektivt utan att göra onödigt mycket väsen av sig.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1 mr-3"><CheckBadgeIcon className="w-6 h-6 text-vvsblue" /></div>
+                                    <span><strong>Smart och uppkopplad</strong> – intelligent styrning, uppkopplade funktioner och automatiska uppdateringar hjälper till att optimera energianvändningen.</span>
+                                </li>
+                            </ul>
+
+                            <h3>Vi hjälper dig hela vägen</h3>
+                            <p>
+                                När du köper din Qvantum QE genom oss på VVS Projekt får du inte bara en ny värmepump. Vi hjälper dig från första fråga till färdig installation. Vi tittar på förutsättningarna i ditt hus och din befintliga värmepump, rekommenderar rätt lösning och lämnar ett personligt prisförslag.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Sidebar */}
+                    <div class="bg-slate-50 border-l border-slate-100 p-6 md:p-8 lg:p-10 lg:sticky lg:top-24 h-fit">
+                        <div class="mb-10 text-center">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 block">
+                                Gäller t.o.m 30 sep
+                            </span>
+                            <div class="text-4xl md:text-5xl font-display font-extrabold text-slate-900 mb-2">
+                                99 000:-
+                            </div>
+                            <p class="text-sm text-slate-500">
+                                Inkl. moms och ROT-avdrag
+                            </p>
+                            <div class="w-16 h-1 bg-vvscopper mx-auto mt-6 rounded-full"></div>
+                        </div>
+
+                        <div class="space-y-6 mb-10">
+                            <div class="flex items-start">
+                                <div class="bg-white p-2 rounded-full shadow-sm mr-4 border border-slate-100 flex-shrink-0">
+                                    <PhoneIcon className="w-5 h-5 text-vvsblue" />
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Direktnummer</p>
+                                    <a href={siteConfig.phone.href} class="text-slate-900 font-medium hover:text-vvscopper transition-colors">
+                                        {siteConfig.phone.display}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-white p-2 rounded-full shadow-sm mr-4 border border-slate-100 flex-shrink-0">
+                                    <EnvelopeIcon className="w-5 h-5 text-vvsblue" />
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">E-post</p>
+                                    <a href={siteConfig.email.href} class="text-slate-900 font-medium hover:text-vvscopper transition-colors">
+                                        {siteConfig.email.display}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-vvsblue/5 p-6 md:p-8 rounded-xl border border-vvsblue/20 text-center">
+                            <h3 class="text-xl font-display font-bold text-vvsblue mb-3">Är det dags att byta värmepump?</h3>
+                            <p class="text-sm text-slate-600 mb-6">
+                                Är du osäker på om Qvantum QE passar ditt hus? Kontakta oss så hjälper vi dig att gå igenom förutsättningarna och ta fram ett personligt förslag.
+                            </p>
+                            <a href="tel:+46736785181" class="block w-full bg-vvsblue hover:bg-vvsblue/90 text-white font-bold py-4 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 no-underline">
+                                Ring oss på {siteConfig.phone.display}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Contact Form Section - Full width */}
+                <div class="bg-slate-100 p-8 md:p-12 lg:p-16 border-t border-slate-200">
+                    <div class="max-w-3xl mx-auto">
+                        <div class="text-center mb-10">
+                            <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">Boka kostnadsfritt hembesök</h2>
+                            <p class="text-lg text-slate-600">
+                                Fyll i dina uppgifter nedan så kontaktar vi dig inom kort för en bedömning av just ditt hus.
+                            </p>
+                        </div>
+                        <div class="bg-white p-6 md:p-8 lg:p-10 rounded-2xl shadow-xl border border-slate-100">
+                            <ContactForm />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <Footer />
+    <MobileActionBar />
+</MainLayout>

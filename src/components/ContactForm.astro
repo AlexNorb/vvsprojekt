@@ -446,7 +446,7 @@ import { siteConfig } from "../config";
                         currentTotalSize += finalSizeBytes;
                         sessionFiles.push({
                             id: Math.random().toString(36).substr(2, 9),
-                            originalName: file.name,
+                            originalName: isImage ? file.name.replace(/\.[^/.]+$/, ".jpg") : file.name,
                             isImage,
                             base64Data: base64Content,
                             sizeBytes: finalSizeBytes,

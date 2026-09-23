@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import ChevronDownIcon from "./icons/ChevronDownIcon.astro";
 import CheckBadgeIcon from "./icons/CheckBadgeIcon.astro";
 import heroImg from "../assets/images/hero.jpg";
+import kampanjImg2 from "../assets/images/kampanj_qe2.webp";
 import { pb } from "../utils";
 import { siteConfig } from "../config";
 ---
@@ -23,7 +24,7 @@ import { siteConfig } from "../config";
             format="webp"
         />
         <div
-            class="absolute inset-0 bg-gradient-to-b from-white/70 via-white/40 to-white/0"
+            class="absolute inset-0 bg-gradient-to-b from-white/70 via-white/40 to-white/0 pointer-events-none"
         >
         </div>
     </div>
@@ -112,9 +113,40 @@ import { siteConfig } from "../config";
             </div>
         </div>
 
-        {/* Right Column: Empty for background image visibility */}
-        <div class="hidden lg:block w-full lg:col-span-5 xl:col-span-4">
-            {/* Content removed for cleaner look */}
+        {/* Right Column: Campaign Card */}
+        <div class="w-full lg:col-span-5 xl:col-span-4 mt-12 lg:mt-0 flex justify-center lg:justify-end perspective-1000">
+            <a 
+                href={pb("/kampanj-qvantum")} 
+                class="group relative block w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden border border-white/50 hover:border-vvsblue/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,118,255,0.3)] animate-float bg-white"
+                style="animation-duration: 8s;"
+            >
+                {/* Full-card Background Image */}
+                <div class="absolute inset-0 z-0">
+                    <Image
+                        src={kampanjImg2}
+                        alt="Qvantum QE Kampanj"
+                        class="w-full h-full object-cover object-right-bottom opacity-60 group-hover:scale-105 transition-transform duration-500"
+                        widths={[360]}
+                        sizes="360px"
+                    />
+                </div>
+                
+                <div class="absolute top-0 right-0 bg-vvscopper text-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-bl-xl z-20 shadow-md">
+                    Tidsbegränsat
+                </div>
+                
+                <div class="p-8 pb-32 relative z-10 flex flex-col justify-start h-full min-h-[320px]">
+                    <div class="text-4xl font-display font-extrabold text-vvsblue mb-1">99 000:-</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Qvantum QE Värmepump</h3>
+                    <p class="text-slate-800 mb-4 text-sm leading-relaxed font-medium max-w-[200px]">
+                        Inklusive standardinstallation vid utbyte. Gäller t.o.m 30 sep.
+                    </p>
+                    <div class="mt-auto inline-flex self-start items-center text-white bg-vvsblue font-bold text-sm py-2 px-4 rounded-lg group-hover:bg-vvsblue-600 transition-colors shadow-md">
+                        Läs mer
+                        <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                </div>
+            </a>
         </div>
 
         {/* Glow effects - Centered (Moved to behind grid/content generally) */}
