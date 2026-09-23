@@ -14,7 +14,7 @@ import { siteConfig } from "../config";
 >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-10 text-center sm:text-left"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10 text-center sm:text-left"
         >
             <!-- Logo & Service Areas -->
             <div>
@@ -75,6 +75,37 @@ import { siteConfig } from "../config";
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                     </button>
+                </div>
+            </div>
+
+            <!-- Samarbetspartners -->
+            <div>
+                <h4 class="font-display font-bold text-lg mb-4">Samarbeten</h4>
+                <div class="space-y-3 text-slate-400 text-sm">
+                    <div>
+                        <a
+                            href={siteConfig.partners.byggprojekt.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-white hover:text-vvscopper font-medium transition-colors flex items-center justify-center sm:justify-start gap-1 group"
+                        >
+                            <span>{siteConfig.partners.byggprojekt.name}</span>
+                            <span class="text-xs opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+                        </a>
+                        <p class="text-xs text-slate-400 mt-0.5">Bygg & totalentreprenad</p>
+                    </div>
+                    <div>
+                        <a
+                            href={siteConfig.partners.elprojekt.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-white hover:text-vvscopper font-medium transition-colors flex items-center justify-center sm:justify-start gap-1 group"
+                        >
+                            <span>{siteConfig.partners.elprojekt.name}</span>
+                            <span class="text-xs opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+                        </a>
+                        <p class="text-xs text-slate-400 mt-0.5">Elinstallationer</p>
+                    </div>
                 </div>
             </div>
 
