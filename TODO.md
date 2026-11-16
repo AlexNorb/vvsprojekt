@@ -35,8 +35,8 @@ Uppdatera följande fält i `src/config.ts`:
 ### 2. Sociala Medier & Google Business
 Uppdatera i `src/config.ts`:
 
-- [ ] **Facebook-URL** (`social.facebook`)
-- [ ] **Instagram-URL** (`social.instagram`)
+- [x] **Facebook-URL** (`social.facebook`)
+- [x] **Instagram-URL** (`social.instagram`)
 - [ ] **Google Reviews-URL** (`social.googleReview`)
 
 ### 3. Kontaktformulär (Backend)

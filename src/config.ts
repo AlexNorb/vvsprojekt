@@ -52,8 +52,8 @@ export const siteConfig = {
 
   /** Sociala medier & review-länkar */
   social: {
-    facebook: "#", // TODO: Fyll i Facebook-URL
-    instagram: "#", // TODO: Fyll i Instagram-URL
+    facebook: "https://www.facebook.com/profile.php?id=61596176318809",
+    instagram: "https://www.instagram.com/vvsprojektiuddevalla",
     googleReview: "#", // TODO: Fyll i Google Review-URL
   },
 
